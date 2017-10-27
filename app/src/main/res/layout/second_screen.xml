@@ -13,24 +13,5 @@
         android:layout_centerInParent="true"
         android:background="@drawable/smiley_happy"/>
 
-    <Button
-        android:id="@+id/button_ic_not_add_black_2"
-        android:layout_width="32dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="11dp"
-        android:background="@drawable/ic_note_add_black"/>
-
-    <Button
-        android:id="@+id/button_history_black"
-        android:layout_width="42dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="11dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/ic_history_black"/>
 
 </RelativeLayout>

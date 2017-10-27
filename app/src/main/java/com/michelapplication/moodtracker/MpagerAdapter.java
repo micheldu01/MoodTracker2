@@ -1,6 +1,7 @@
 package com.michelapplication.moodtracker;
 
 import android.content.Context;
+import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,6 @@ public class MpagerAdapter extends PagerAdapter {
     private int[] layouts;
     private LayoutInflater layoutInflater;
     private Context context;
-
 
 
 
@@ -41,7 +41,6 @@ public class MpagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int  position) {
-
         View view = layoutInflater.inflate(layouts[position],container,false);
         container.addView(view);
         return view;
