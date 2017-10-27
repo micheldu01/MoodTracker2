@@ -1,8 +1,11 @@
 package com.michelapplication.moodtracker;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,16 +17,18 @@ public class MainActivity extends AppCompatActivity {
     private MpagerAdapter mpagerAdapter;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-
         mPager = (ViewPager)findViewById(R.id.viewPager);
         mpagerAdapter = new MpagerAdapter(layouts,this);
         mPager.setAdapter(mpagerAdapter);
+        mPager.setCurrentItem(1);
+
 
     }
 }
