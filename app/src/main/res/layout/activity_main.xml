@@ -14,6 +14,43 @@
 
     </android.support.v4.view.ViewPager>
 
+    <TextView
+        android:id="@+id/carre_blanc"
+        android:layout_marginTop="84dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:layout_width="280dp"
+        android:layout_height="152dp"/>
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="250dp"
+        android:layout_height="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp"
+        android:backgroundTint="@color/green_line"
+        android:hint="Commentaire"/>
+
+
+    <Button
+        android:id="@+id/btn_valider_commentaire"
+        android:text="valider"
+        android:textColor="@color/green_text"
+        android:layout_marginTop="183dp"
+        android:layout_marginLeft="231dp"
+        android:background="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_annuler_commentaire"
+        android:text="annuler"
+        android:textColor="@color/green_text"
+        android:layout_marginTop="183dp"
+        android:layout_marginLeft="143dp"
+        android:background="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/button_commenter"
         android:layout_width="32dp"
