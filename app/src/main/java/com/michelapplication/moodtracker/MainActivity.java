@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private ViewPager mPager;
+    private VerticalViewPager mPager;
     private int[] layouts = {R.layout.first_screen,R.layout.second_screen,
             R.layout.third_screen,R.layout.fourth_screen,R.layout.five_screen};
     private MpagerAdapter mpagerAdapter;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn_history = (Button)findViewById(R.id.button_history_black);
-        mPager = (ViewPager)findViewById(R.id.viewPager);
+        mPager = (VerticalViewPager) findViewById(R.id.viewPager);
         mpagerAdapter = new MpagerAdapter(layouts,this);
         mPager.setAdapter(mpagerAdapter);
         mPager.setCurrentItem(1);

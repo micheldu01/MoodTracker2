@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.michelapplication.moodtracker.PageResult">
+
+    tools:context="com.michelapplication.moodtracker.MainActivity">
 
     <TextView
-        android:text="Resutat du test"
+        android:id="@+id/text_page_result"
+        android:text="Resultat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/il_y_a_une_semaine"
+        android:text="Il y a une semaine"
+        android:background="@color/banana_yellow"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"/>
+
+    <TextView
+        android:id="@+id/il_y_a_six_jours"
+        android:text="Il y a six jours"
+        android:layout_below="@+id/il_y_a_une_semaine"
+        android:background="@color/light_sage"
+        android:layout_width="288dp"
+        android:layout_height="82dp"/>
+
+    <TextView
+        android:id="@+id/il_y_a_cinq_jours"
+        android:text="Il y a cinq jours"
+        android:layout_below="@+id/il_y_a_six_jours"
+        android:background="@color/cornflower_blue_65"
+        android:layout_width="216dp"
+        android:layout_height="82dp"/>
+
+    <TextView
+        android:id="@+id/il_y_a_quatre_jours"
+        android:text="Il y a quatre jours"
+        android:layout_below="@+id/il_y_a_cinq_jours"
+        android:background="@color/warm_grey"
+        android:layout_width="144dp"
+        android:layout_height="82dp"/>
+
+    <TextView
+        android:id="@+id/il_y_a_trois_jours"
+        android:text="Il y a trois jours"
+        android:layout_below="@+id/il_y_a_quatre_jours"
+        android:background="@color/faded_red"
+        android:layout_width="72dp"
+        android:layout_height="82dp"/>
+
+    <TextView
+        android:id="@+id/avant_hier"
+        android:text="Avant hier"
+        android:layout_below="@+id/il_y_a_trois_jours"
+        android:background="@color/warm_grey"
+        android:layout_width="380dp"
+        android:layout_height="82dp"/>
+
+    <TextView
+        android:id="@+id/hier"
+        android:text="Hier"
+        android:layout_below="@+id/avant_hier"
+        android:background="@color/light_sage"
+        android:layout_width="288dp"
+        android:layout_height="82dp"/>
+
 
 </RelativeLayout>
