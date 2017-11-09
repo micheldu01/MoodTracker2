@@ -1,4 +1,4 @@
-package com.michelapplication.moodtracker;
+package com.michelapplication.moodtracker.model;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.michelapplication.moodtracker.MainActivity">
+    tools:context="com.michelapplication.moodtracker.controller.MainActivity">
 
-    <com.michelapplication.moodtracker.VerticalViewPager
+    <com.michelapplication.moodtracker.model.VerticalViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/viewPager">
 
-    </com.michelapplication.moodtracker.VerticalViewPager>
+    </com.michelapplication.moodtracker.model.VerticalViewPager>
 
     <TextView
         android:id="@+id/carre_blanc"
@@ -33,7 +33,7 @@
 
 
     <Button
-        android:id="@+id/btn_valider_commentaire"
+        android:id="@+id/btn_accept_comment"
         android:text="valider"
         android:textColor="@color/green_text"
         android:layout_marginTop="183dp"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btn_annuler_commentaire"
+        android:id="@+id/btn_cancel_comment"
         android:text="annuler"
         android:textColor="@color/green_text"
         android:layout_marginTop="183dp"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/button_commenter"
+        android:id="@+id/button_comment"
         android:layout_width="32dp"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"

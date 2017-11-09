@@ -1,11 +1,14 @@
-package com.michelapplication.moodtracker;
+package com.michelapplication.moodtracker.model;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.michelapplication.moodtracker.R;
 
 /**
  * Created by michel on 26/10/2017.
@@ -20,7 +23,7 @@ public class MpagerAdapter extends PagerAdapter {
 
 
 
-    // constructeur
+    // constructor
     public MpagerAdapter(int[] layouts, Context context)
     {
         this.layouts = layouts;
@@ -43,6 +46,9 @@ public class MpagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int  position) {
         View view = layoutInflater.inflate(layouts[position],container,false);
         container.addView(view);
+        //add music
+        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.music_applic);
+        mediaPlayer.start();
         return view;
     }
 
