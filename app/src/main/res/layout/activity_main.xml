@@ -29,12 +29,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="97dp"
         android:backgroundTint="@color/green_line"
-        android:hint="Commentaire"/>
+        android:hint="@string/int_comment"/>
 
 
     <Button
         android:id="@+id/btn_accept_comment"
-        android:text="valider"
+        android:text="@string/accept"
         android:textColor="@color/green_text"
         android:layout_marginTop="183dp"
         android:layout_marginLeft="231dp"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_cancel_comment"
-        android:text="annuler"
+        android:text="@string/cancel"
         android:textColor="@color/green_text"
         android:layout_marginTop="183dp"
         android:layout_marginLeft="143dp"

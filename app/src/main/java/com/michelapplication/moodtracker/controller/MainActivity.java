@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     //layouts smiley
     private VerticalViewPager mPager;
-    private int[] layouts = {R.layout.first_screen,R.layout.second_screen,
-            R.layout.third_screen,R.layout.fourth_screen,R.layout.five_screen};
+    private int[] layouts = {R.drawable.smiley_super_happy,R.drawable.smiley_happy,
+            R.drawable.smiley_normal,R.drawable.smiley_disappointed,R.drawable.smiley_sad};
     private MpagerAdapter mpagerAdapter;
     private Button btn_history;
     //add white edit text and btn cancel and accept
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     protected TextView white_square;
     //SharedPreferences
     private SharedPreferences mSharedPreferences;
-    protected static final String MONHUMEUR = "MyMood";
-    protected static final String HUM = "Mood";
+    protected static final String MYMOOD = "MyMood";
+    protected static final String MOOD = "Mood";
 
 
     @Override
@@ -44,19 +44,20 @@ public class MainActivity extends AppCompatActivity {
         mPager = (VerticalViewPager) findViewById(R.id.viewPager);
         mpagerAdapter = new MpagerAdapter(layouts,this);
         mPager.setAdapter(mpagerAdapter);
+        //set the current item (smiley))
         mPager.setCurrentItem(1);
         //implement white square and btn and edit text (in mode invisible)
-        btn_cancel_comment = (Button) findViewById(R.id.btn_accept_comment);
+        btn_cancel_comment = (Button) findViewById(R.id.btn_cancel_comment);
         btn_cancel_comment.setVisibility(View.INVISIBLE);
         btn_accept_comment = (Button) findViewById(R.id.btn_accept_comment);
         btn_accept_comment.setVisibility(View.INVISIBLE);
-        btn_comment = (Button) findViewById(R.id.button_commenter);
+        btn_comment = (Button) findViewById(R.id.button_comment);
         edit_text_comment = (EditText) findViewById(R.id.edit_text);
         edit_text_comment.setVisibility(View.INVISIBLE);
         white_square = (TextView) findViewById(R.id.carre_blanc);
         white_square.setVisibility(View.INVISIBLE);
         //SharedPreferences
-        mSharedPreferences = getSharedPreferences(MONHUMEUR, Context.MODE_PRIVATE);
+        mSharedPreferences = getSharedPreferences(MYMOOD, Context.MODE_PRIVATE);
 
         //btn of the MainActivity
         btn_history.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 //SharedPreferences
                 String h = edit_text_comment.getText().toString();
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.putString(HUM,h);
+                editor.putString(MOOD,h);
                 editor.commit();
 
             }

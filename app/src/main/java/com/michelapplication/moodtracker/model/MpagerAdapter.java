@@ -1,12 +1,14 @@
 package com.michelapplication.moodtracker.model;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.michelapplication.moodtracker.R;
 
@@ -18,6 +20,9 @@ public class MpagerAdapter extends PagerAdapter {
 
     // variables
     private int[] layouts;
+    private String[] tableauCouleur= {"#fff9ec4f","#ffb8e986","#a5468ad9","#ff9b9b9b","#ffde3c50"};
+    private int[] tableauSmiley = {R.drawable.smiley_super_happy,R.drawable.smiley_happy,
+            R.drawable.smiley_normal,R.drawable.smiley_disappointed,R.drawable.smiley_sad};
     private LayoutInflater layoutInflater;
     private Context context;
 
@@ -44,11 +49,15 @@ public class MpagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int  position) {
-        View view = layoutInflater.inflate(layouts[position],container,false);
-        container.addView(view);
+        View view = layoutInflater.inflate(R.layout.first_screen,container,false);
+        ImageView smiley = (ImageView) view.findViewById(R.id.image_smiley_super_happy);
+        smiley.setImageResource(tableauSmiley[position]);
+        view.setBackgroundColor(Color.parseColor((String)tableauCouleur[position]));
         //add music
-        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.music_applic);
+        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.music_appli);
         mediaPlayer.start();
+
+        container.addView(view);
         return view;
     }
 
