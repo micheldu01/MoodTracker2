@@ -13,5 +13,8 @@
     <color name="green_line">#009688</color>
     <color name="green_text">#009587</color>
     <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="dark_gray">#313131</color>
+    <color name="black">#000000</color>
 
 </resources>
