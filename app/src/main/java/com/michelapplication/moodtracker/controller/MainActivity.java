@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //layouts smiley
-    private VerticalViewPager mPager;
+    protected VerticalViewPager mPager;
     private int[] layouts = {R.drawable.smiley_super_happy,R.drawable.smiley_happy,
             R.drawable.smiley_normal,R.drawable.smiley_disappointed,R.drawable.smiley_sad};
     private MpagerAdapter mpagerAdapter;

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -56,7 +57,7 @@ public class PageResult extends MainActivity {
     private int size_comment = 1;
     //Toast
     private TextView toast_mood;
-    
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -115,6 +116,7 @@ public class PageResult extends MainActivity {
         //add value in mMooBDD if dayCount != 0
         if (dayCount != 0){
             mMoodBDD.insertMood(new Mood(choice_color, size_color, size_comment, saveComment));
+            onResume();
         }
 
         //add void mMooBdd if dayCount > 1
@@ -125,169 +127,60 @@ public class PageResult extends MainActivity {
         }
 
         //seven_days
-        mView7.setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-7).getColor()));
-        //comment no comment
-        if ((arrayMoods.get(arrayMoods.size()-7).getComment()).equals("")) {
-            btn7.setVisibility(View.INVISIBLE);
-        }
-        if ((arrayMoods.get(arrayMoods.size()-7).getSizeColor()) == 0){
-            mView7.setText(" default mood");
-        }
-        float sp7 = (arrayMoods.get(arrayMoods.size()-7).getSizeColor());
-        float px7 = sp7 * getResources().getDisplayMetrics().density;
-        mView7.getLayoutParams().width = (int) px7;
-        //margin left
-        float spl7 = (arrayMoods.get(arrayMoods.size()-7).getSizeCommnent());
-        float pxl7 = spl7 * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt7 = 30;
-        float pxt7 = spt7 * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp7 = (RelativeLayout.LayoutParams) btn7.getLayoutParams();
-        lp7.setMargins((int) pxl7, (int) pxt7, 0, 0);
-        btn7.setLayoutParams(lp7);
+        methodDay(arrayMoods.get(arrayMoods.size()-7).getColor(),
+                arrayMoods.get(arrayMoods.size()-7).getComment(),
+                arrayMoods.get(arrayMoods.size()-7).getSizeColor(),
+                arrayMoods.get(arrayMoods.size()-7).getSizeCommnent(),
+                btn1,
+                mView1);
 
         //six days
-        mView6.setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-6).getColor()));
-        //comment no comment
-        if ((arrayMoods.get(arrayMoods.size()-6).getComment()).equals("")) {
-            btn6.setVisibility(View.INVISIBLE);
-        }
-        if ((arrayMoods.get(arrayMoods.size()-6).getSizeColor()) == 0){
-            mView7.setText(" default mood");
-        }
-        float sp6 = (arrayMoods.get(arrayMoods.size()-6).getSizeColor());
-        float px6 = sp6 * getResources().getDisplayMetrics().density;
-        mView6.getLayoutParams().width = (int) px6;
-        //margin left
-        float spl6 = (arrayMoods.get(arrayMoods.size()-6).getSizeCommnent());
-        float pxl6 = spl6 * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt6 = 30;
-        float pxt6 = spt6 * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp6 = (RelativeLayout.LayoutParams) btn6.getLayoutParams();
-        lp6.setMargins((int) pxl6, (int) pxt6, 0, 0);
-        btn6.setLayoutParams(lp6);
+        methodDay(arrayMoods.get(arrayMoods.size()-6).getColor(),
+                arrayMoods.get(arrayMoods.size()-6).getComment(),
+                arrayMoods.get(arrayMoods.size()-6).getSizeColor(),
+                arrayMoods.get(arrayMoods.size()-6).getSizeCommnent(),
+                btn1,
+                mView1);
 
         // five days
-        mView5.setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-5).getColor()));
-        //comment no comment
-        if ((arrayMoods.get(arrayMoods.size()-5).getComment()).equals("")) {
-            btn5.setVisibility(View.INVISIBLE);
-        }
-        if ((arrayMoods.get(arrayMoods.size()-5).getSizeColor()) == 0){
-            mView7.setText(" default mood");
-        }
-        float sp5 = (arrayMoods.get(arrayMoods.size()-5).getSizeColor());
-        float px5 = sp5 * getResources().getDisplayMetrics().density;
-        mView5.getLayoutParams().width = (int) px5;
-        //margin left
-        float spl5 = (arrayMoods.get(arrayMoods.size()-5).getSizeCommnent());
-        float pxl5 = spl5 * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt5 = 30;
-        float pxt5 = spt5 * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp5 = (RelativeLayout.LayoutParams) btn5.getLayoutParams();
-        lp5.setMargins((int) pxl5, (int) pxt5, 0, 0);
-        btn5.setLayoutParams(lp5);
+        methodDay(arrayMoods.get(arrayMoods.size()-5).getColor(),
+                arrayMoods.get(arrayMoods.size()-5).getComment(),
+                arrayMoods.get(arrayMoods.size()-5).getSizeColor(),
+                arrayMoods.get(arrayMoods.size()-5).getSizeCommnent(),
+                btn1,
+                mView1);
 
         //four days
-        mView4.setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-4).getColor()));
-        //comment no comment
-        if ((arrayMoods.get(arrayMoods.size()-4).getComment()).equals("")) {
-            btn4.setVisibility(View.INVISIBLE);
-        }
-        if ((arrayMoods.get(arrayMoods.size()-4).getSizeColor()) == 0){
-            mView7.setText(" default mood");
-        }
-        float sp4 = (arrayMoods.get(arrayMoods.size()-4).getSizeColor());
-        float px4 = sp4 * getResources().getDisplayMetrics().density;
-        mView4.getLayoutParams().width = (int) px4;
-        //margin left
-        float spl4 = (arrayMoods.get(arrayMoods.size()-4).getSizeCommnent());
-        float pxl4 = spl4 * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt4 = 30;
-        float pxt4 = spt4 * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp4 = (RelativeLayout.LayoutParams) btn4.getLayoutParams();
-        lp4.setMargins((int) pxl4, (int) pxt4, 0, 0);
-        btn4.setLayoutParams(lp4);
+        methodDay(arrayMoods.get(arrayMoods.size()-4).getColor(),
+                arrayMoods.get(arrayMoods.size()-4).getComment(),
+                arrayMoods.get(arrayMoods.size()-4).getSizeColor(),
+                arrayMoods.get(arrayMoods.size()-4).getSizeCommnent(),
+                btn1,
+                mView1);
 
         //tree days
-        mView3.setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-3).getColor()));
-        //comment no comment
-        if ((arrayMoods.get(arrayMoods.size()-3).getComment()).equals("")) {
-            btn3.setVisibility(View.INVISIBLE);
-        }
-        if ((arrayMoods.get(arrayMoods.size()-3).getSizeColor()) == 0){
-            mView7.setText(" default mood");
-        }
-        float sp3 = (arrayMoods.get(arrayMoods.size()-3).getSizeColor());
-        float px3 = sp3 * getResources().getDisplayMetrics().density;
-        mView3.getLayoutParams().width = (int) px3;
-        //margin left
-        float spl3 = (arrayMoods.get(arrayMoods.size()-3).getSizeCommnent());
-        float pxl3 = spl3 * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt3 = 30;
-        float pxt3 = spt3 * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp3 = (RelativeLayout.LayoutParams) btn3.getLayoutParams();
-        lp3.setMargins((int) pxl3, (int) pxt3, 0, 0);
-        btn3.setLayoutParams(lp3);
+        methodDay(arrayMoods.get(arrayMoods.size()-3).getColor(),
+                arrayMoods.get(arrayMoods.size()-3).getComment(),
+                arrayMoods.get(arrayMoods.size()-3).getSizeColor(),
+                arrayMoods.get(arrayMoods.size()-3).getSizeCommnent(),
+                btn1,
+                mView1);
 
         //two days
-        mView2.setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-2).getColor()));
-        //comment no comment
-        if ((arrayMoods.get(arrayMoods.size()-2).getComment()).equals("")) {
-            btn2.setVisibility(View.INVISIBLE);
-        }
-        if ((arrayMoods.get(arrayMoods.size()-2).getSizeColor()) == 0){
-            mView7.setText(" default mood");
-        }
-        float sp2 = (arrayMoods.get(arrayMoods.size()-2).getSizeColor());
-        float px2 = sp2 * getResources().getDisplayMetrics().density;
-        mView2.getLayoutParams().width = (int) px2;
-        //margin left
-        float spl2 = (arrayMoods.get(arrayMoods.size()-2).getSizeCommnent());
-        float pxl2 = spl2 * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt2 = 30;
-        float pxt2 = spt2 * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) btn2.getLayoutParams();
-        lp2.setMargins((int) pxl2, (int) pxt2, 0, 0);
-        btn2.setLayoutParams(lp2);
+        methodDay(arrayMoods.get(arrayMoods.size()-2).getColor(),
+                arrayMoods.get(arrayMoods.size()-2).getComment(),
+                arrayMoods.get(arrayMoods.size()-2).getSizeColor(),
+                arrayMoods.get(arrayMoods.size()-2).getSizeCommnent(),
+                btn1,
+                mView1);
 
         //one day
-        mView1.setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-1).getColor()));
-        //comment no comment
-        //if ((mMoods.get(mMoods.size()-1).getComment()) == "") {
-        //   btn1.setVisibility(View.INVISIBLE);
-        //    mView1.setText(" default mood");
-        //}
-        if ((arrayMoods.get(arrayMoods.size()-1).getComment().equals(""))) {
-            btn1.setVisibility(View.INVISIBLE);
-        }
-        if ((arrayMoods.get(arrayMoods.size()-1).getSizeColor()) == 0){
-            mView7.setText(" default mood");
-        }
-        float sp1 = (arrayMoods.get(arrayMoods.size()-1).getSizeColor());
-        float px1 = sp1 * getResources().getDisplayMetrics().density;
-        mView1.getLayoutParams().width = (int) px1;
-        //margin left
-        float spl1 = (arrayMoods.get(arrayMoods.size()-1).getSizeCommnent());
-        float pxl1 = spl1 * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt1 = 30;
-        float pxt1 = spt1 * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp1 = (RelativeLayout.LayoutParams) btn1.getLayoutParams();
-        lp1.setMargins((int) pxl1, (int) pxt1, 0, 0);
-        btn1.setLayoutParams(lp1);
+        methodDay(arrayMoods.get(arrayMoods.size()-1).getColor(),
+                arrayMoods.get(arrayMoods.size()-1).getComment(),
+                arrayMoods.get(arrayMoods.size()-1).getSizeColor(),
+                arrayMoods.get(arrayMoods.size()-1).getSizeCommnent(),
+                btn1,
+                mView1);
 
         //test toast
         btn7.setOnClickListener(new View.OnClickListener() {
@@ -389,5 +282,30 @@ public class PageResult extends MainActivity {
             }
         });
         mMoodBDD.close();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void methodDay(int myColor, String myComment, int mySizeColor, int mySizeComment, ImageButton myButton, TextView myTextView){
+        myTextView.setBackgroundColor(getColor(myColor));
+        //comment no comment
+        if (myComment.equals("")){
+            myButton.setVisibility(View.INVISIBLE);
+        }
+        if (mySizeColor == 0){
+            myTextView.setText(" default mood");
+        }
+        float sp7 = (mySizeColor);
+        float px7 = sp7 * getResources().getDisplayMetrics().density;
+        myTextView.getLayoutParams().width = (int) px7;
+        //margin left
+        float spl7 = (mySizeComment);
+        float pxl7 = spl7 * getResources().getDisplayMetrics().density;
+        //margin top
+        float spt7 = 30;
+        float pxt7 = spt7 * getResources().getDisplayMetrics().density;
+        //change margins
+        RelativeLayout.LayoutParams lp7 = (RelativeLayout.LayoutParams) myButton.getLayoutParams();
+        lp7.setMargins((int) pxl7, (int) pxt7, 0, 0);
+        myButton.setLayoutParams(lp7);
     }
 }
