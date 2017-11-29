@@ -3,6 +3,10 @@ package com.michelapplication.moodtracker.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
+import android.os.Build;
+import android.os.ParcelUuid;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,11 +34,14 @@ public class MainActivity extends AppCompatActivity {
     protected EditText edit_text_comment;
     protected TextView white_square;
     //SharedPreferences
-    private SharedPreferences mSharedPreferences;
-    protected static final String MYMOOD = "MyMood";
-    protected static final String MOOD = "Mood";
+    protected SharedPreferences mSharedPreferences;
+    public static final String MYMOOD = "MyMood";
+    public static final String COMMENT = "Comment";
+    public static final String MOOD_TEMPORARY = "";
+    public static final String DATE  = "yyyy-MM-dd";
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +65,22 @@ public class MainActivity extends AppCompatActivity {
         white_square.setVisibility(View.INVISIBLE);
         //SharedPreferences
         mSharedPreferences = getSharedPreferences(MYMOOD, Context.MODE_PRIVATE);
+
+        //If first connection
+        if (MOOD_TEMPORARY == ""){
+            // add date
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            Calendar calendar = Calendar.getInstance();
+            calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.get(Calendar.MONTH);
+            calendar.get(Calendar.YEAR);
+            long saveDay = calendar.getTimeInMillis();
+            editor.putLong(DATE, saveDay);
+            editor.commit();
+
+            //add current mood
+            editor.putInt(MOOD_TEMPORARY, 1);
+        }
 
         //btn of the MainActivity
         btn_history.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 //SharedPreferences
                 String h = edit_text_comment.getText().toString();
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.putString(MOOD,h);
+                editor.putString(COMMENT,h);
                 editor.commit();
 
             }

@@ -1,11 +1,17 @@
 package com.michelapplication.moodtracker.controller;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.michelapplication.moodtracker.R;
+
+import static com.michelapplication.moodtracker.controller.MainActivity.COMMENT;
+import static com.michelapplication.moodtracker.controller.MainActivity.DATE;
+import static com.michelapplication.moodtracker.controller.MainActivity.MOOD_TEMPORARY;
+import static com.michelapplication.moodtracker.controller.MainActivity.MYMOOD;
 
 public class PageResult extends AppCompatActivity {
 
@@ -25,6 +31,10 @@ public class PageResult extends AppCompatActivity {
     private ImageButton btn3;
     private ImageButton btn2;
     private ImageButton btn1;
+    //SharedPreferences
+    private String comment;
+    private int smiley;
+    private long dateShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +57,13 @@ public class PageResult extends AppCompatActivity {
         btn2 = (ImageButton) findViewById(R.id.btn_2);
         btn1 = (ImageButton) findViewById(R.id.btn_1);
 
-        
+        //SharedPreferences date comment and smiley
+        SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
+        comment = prefs.getString(COMMENT, "");
+        smiley = prefs.getInt(MOOD_TEMPORARY, 0);
+        dateShare = prefs.getLong(DATE, 0);
+
+        mView7.setText(String.valueOf(dateShare));
+
     }
 }
