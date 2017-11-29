@@ -131,48 +131,48 @@ public class PageResult extends MainActivity {
                 arrayMoods.get(arrayMoods.size()-7).getComment(),
                 arrayMoods.get(arrayMoods.size()-7).getSizeColor(),
                 arrayMoods.get(arrayMoods.size()-7).getSizeCommnent(),
-                btn1,
-                mView1);
+                btn7,
+                mView7);
 
         //six days
         methodDay(arrayMoods.get(arrayMoods.size()-6).getColor(),
                 arrayMoods.get(arrayMoods.size()-6).getComment(),
                 arrayMoods.get(arrayMoods.size()-6).getSizeColor(),
                 arrayMoods.get(arrayMoods.size()-6).getSizeCommnent(),
-                btn1,
-                mView1);
+                btn6,
+                mView6);
 
         // five days
         methodDay(arrayMoods.get(arrayMoods.size()-5).getColor(),
                 arrayMoods.get(arrayMoods.size()-5).getComment(),
                 arrayMoods.get(arrayMoods.size()-5).getSizeColor(),
                 arrayMoods.get(arrayMoods.size()-5).getSizeCommnent(),
-                btn1,
-                mView1);
+                btn5,
+                mView5);
 
         //four days
         methodDay(arrayMoods.get(arrayMoods.size()-4).getColor(),
                 arrayMoods.get(arrayMoods.size()-4).getComment(),
                 arrayMoods.get(arrayMoods.size()-4).getSizeColor(),
                 arrayMoods.get(arrayMoods.size()-4).getSizeCommnent(),
-                btn1,
-                mView1);
+                btn4,
+                mView4);
 
         //tree days
         methodDay(arrayMoods.get(arrayMoods.size()-3).getColor(),
                 arrayMoods.get(arrayMoods.size()-3).getComment(),
                 arrayMoods.get(arrayMoods.size()-3).getSizeColor(),
                 arrayMoods.get(arrayMoods.size()-3).getSizeCommnent(),
-                btn1,
-                mView1);
+                btn3,
+                mView3);
 
         //two days
         methodDay(arrayMoods.get(arrayMoods.size()-2).getColor(),
                 arrayMoods.get(arrayMoods.size()-2).getComment(),
                 arrayMoods.get(arrayMoods.size()-2).getSizeColor(),
                 arrayMoods.get(arrayMoods.size()-2).getSizeCommnent(),
-                btn1,
-                mView1);
+                btn2,
+                mView2);
 
         //one day
         methodDay(arrayMoods.get(arrayMoods.size()-1).getColor(),
@@ -186,99 +186,43 @@ public class PageResult extends MainActivity {
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //toast
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
-                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
-                toast_mood.setText(arrayMoods.get(arrayMoods.size()-7).getComment());
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
+                methodToast(arrayMoods.get(arrayMoods.size()-7).getComment());
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //toast
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
-                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
-                toast_mood.setText(arrayMoods.get(arrayMoods.size()-6).getComment());
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
+                methodToast(arrayMoods.get(arrayMoods.size()-6).getComment());
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //toast
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
-                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
-                toast_mood.setText(arrayMoods.get(arrayMoods.size()-5).getComment());
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
+                methodToast(arrayMoods.get(arrayMoods.size()-5).getComment());
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //toast
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
-                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
-                toast_mood.setText(arrayMoods.get(arrayMoods.size()-4).getComment());
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
+                methodToast(arrayMoods.get(arrayMoods.size()-4).getComment());
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //toast
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
-                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
-                toast_mood.setText(arrayMoods.get(arrayMoods.size()-3).getComment());
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
+                methodToast(arrayMoods.get(arrayMoods.size()-3).getComment());
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //toast
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
-                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
-                toast_mood.setText(arrayMoods.get(arrayMoods.size()-2).getComment());
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
+                methodToast(arrayMoods.get(arrayMoods.size()-2).getComment());
             }
         });
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //toast
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
-                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
-                toast_mood.setText(arrayMoods.get(arrayMoods.size()-1).getComment());
-                Toast toast = new Toast(getApplicationContext());
-                toast.setView(layout);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.show();
+                methodToast(arrayMoods.get(arrayMoods.size()-1).getComment());
             }
         });
         mMoodBDD.close();
@@ -307,5 +251,16 @@ public class PageResult extends MainActivity {
         RelativeLayout.LayoutParams lp7 = (RelativeLayout.LayoutParams) myButton.getLayoutParams();
         lp7.setMargins((int) pxl7, (int) pxt7, 0, 0);
         myButton.setLayoutParams(lp7);
+    }
+
+    public void methodToast(String mString){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
+        toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
+        toast_mood.setText(mString);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setView(layout);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.show();
     }
 }
