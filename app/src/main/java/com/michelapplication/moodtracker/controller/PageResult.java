@@ -6,10 +6,13 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.michelapplication.moodtracker.BDD.Mood;
 import com.michelapplication.moodtracker.BDD.MoodBDD;
@@ -22,7 +25,7 @@ import static com.michelapplication.moodtracker.controller.MainActivity.DATE;
 import static com.michelapplication.moodtracker.controller.MainActivity.MOOD_TEMPORARY;
 import static com.michelapplication.moodtracker.controller.MainActivity.MYMOOD;
 
-public class PageResult extends AppCompatActivity {
+public class PageResult extends MainActivity {
 
     //text view
     private TextView mView7;
@@ -51,9 +54,9 @@ public class PageResult extends AppCompatActivity {
     private int choice_color = 1;
     private int size_color = 1;
     private int size_comment = 1;
-    private String comment = "";
-
-
+    //Toast
+    private TextView toast_mood;
+    
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -111,7 +114,7 @@ public class PageResult extends AppCompatActivity {
 
         //add value in mMooBDD if dayCount != 0
         if (dayCount != 0){
-            mMoodBDD.insertMood(new Mood(choice_color, size_color, size_comment, comment));
+            mMoodBDD.insertMood(new Mood(choice_color, size_color, size_comment, saveComment));
         }
 
         //add void mMooBdd if dayCount > 1
@@ -126,6 +129,8 @@ public class PageResult extends AppCompatActivity {
         //comment no comment
         if ((arrayMoods.get(arrayMoods.size()-7).getComment()).equals("")) {
             btn7.setVisibility(View.INVISIBLE);
+        }
+        if ((arrayMoods.get(arrayMoods.size()-7).getSizeColor()) == 0){
             mView7.setText(" default mood");
         }
         float sp7 = (arrayMoods.get(arrayMoods.size()-7).getSizeColor());
@@ -147,7 +152,9 @@ public class PageResult extends AppCompatActivity {
         //comment no comment
         if ((arrayMoods.get(arrayMoods.size()-6).getComment()).equals("")) {
             btn6.setVisibility(View.INVISIBLE);
-            mView6.setText(" default mood");
+        }
+        if ((arrayMoods.get(arrayMoods.size()-6).getSizeColor()) == 0){
+            mView7.setText(" default mood");
         }
         float sp6 = (arrayMoods.get(arrayMoods.size()-6).getSizeColor());
         float px6 = sp6 * getResources().getDisplayMetrics().density;
@@ -168,7 +175,9 @@ public class PageResult extends AppCompatActivity {
         //comment no comment
         if ((arrayMoods.get(arrayMoods.size()-5).getComment()).equals("")) {
             btn5.setVisibility(View.INVISIBLE);
-            mView5.setText(" default mood");
+        }
+        if ((arrayMoods.get(arrayMoods.size()-5).getSizeColor()) == 0){
+            mView7.setText(" default mood");
         }
         float sp5 = (arrayMoods.get(arrayMoods.size()-5).getSizeColor());
         float px5 = sp5 * getResources().getDisplayMetrics().density;
@@ -189,7 +198,9 @@ public class PageResult extends AppCompatActivity {
         //comment no comment
         if ((arrayMoods.get(arrayMoods.size()-4).getComment()).equals("")) {
             btn4.setVisibility(View.INVISIBLE);
-            mView4.setText(" default mood");
+        }
+        if ((arrayMoods.get(arrayMoods.size()-4).getSizeColor()) == 0){
+            mView7.setText(" default mood");
         }
         float sp4 = (arrayMoods.get(arrayMoods.size()-4).getSizeColor());
         float px4 = sp4 * getResources().getDisplayMetrics().density;
@@ -210,7 +221,9 @@ public class PageResult extends AppCompatActivity {
         //comment no comment
         if ((arrayMoods.get(arrayMoods.size()-3).getComment()).equals("")) {
             btn3.setVisibility(View.INVISIBLE);
-            mView3.setText(" default mood");
+        }
+        if ((arrayMoods.get(arrayMoods.size()-3).getSizeColor()) == 0){
+            mView7.setText(" default mood");
         }
         float sp3 = (arrayMoods.get(arrayMoods.size()-3).getSizeColor());
         float px3 = sp3 * getResources().getDisplayMetrics().density;
@@ -231,7 +244,9 @@ public class PageResult extends AppCompatActivity {
         //comment no comment
         if ((arrayMoods.get(arrayMoods.size()-2).getComment()).equals("")) {
             btn2.setVisibility(View.INVISIBLE);
-            mView2.setText(" default mood");
+        }
+        if ((arrayMoods.get(arrayMoods.size()-2).getSizeColor()) == 0){
+            mView7.setText(" default mood");
         }
         float sp2 = (arrayMoods.get(arrayMoods.size()-2).getSizeColor());
         float px2 = sp2 * getResources().getDisplayMetrics().density;
@@ -256,7 +271,9 @@ public class PageResult extends AppCompatActivity {
         //}
         if ((arrayMoods.get(arrayMoods.size()-1).getComment().equals(""))) {
             btn1.setVisibility(View.INVISIBLE);
-            mView1.setText(" default mood");
+        }
+        if ((arrayMoods.get(arrayMoods.size()-1).getSizeColor()) == 0){
+            mView7.setText(" default mood");
         }
         float sp1 = (arrayMoods.get(arrayMoods.size()-1).getSizeColor());
         float px1 = sp1 * getResources().getDisplayMetrics().density;
@@ -272,9 +289,105 @@ public class PageResult extends AppCompatActivity {
         lp1.setMargins((int) pxl1, (int) pxt1, 0, 0);
         btn1.setLayoutParams(lp1);
 
-
-
-
+        //test toast
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toast
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
+                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
+                toast_mood.setText(arrayMoods.get(arrayMoods.size()-7).getComment());
+                Toast toast = new Toast(getApplicationContext());
+                toast.setView(layout);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toast
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
+                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
+                toast_mood.setText(arrayMoods.get(arrayMoods.size()-6).getComment());
+                Toast toast = new Toast(getApplicationContext());
+                toast.setView(layout);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toast
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
+                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
+                toast_mood.setText(arrayMoods.get(arrayMoods.size()-5).getComment());
+                Toast toast = new Toast(getApplicationContext());
+                toast.setView(layout);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toast
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
+                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
+                toast_mood.setText(arrayMoods.get(arrayMoods.size()-4).getComment());
+                Toast toast = new Toast(getApplicationContext());
+                toast.setView(layout);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toast
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
+                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
+                toast_mood.setText(arrayMoods.get(arrayMoods.size()-3).getComment());
+                Toast toast = new Toast(getApplicationContext());
+                toast.setView(layout);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toast
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
+                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
+                toast_mood.setText(arrayMoods.get(arrayMoods.size()-2).getComment());
+                Toast toast = new Toast(getApplicationContext());
+                toast.setView(layout);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toast
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
+                toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
+                toast_mood.setText(arrayMoods.get(arrayMoods.size()-1).getComment());
+                Toast toast = new Toast(getApplicationContext());
+                toast.setView(layout);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
         mMoodBDD.close();
     }
 }
