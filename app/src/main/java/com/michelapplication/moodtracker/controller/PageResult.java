@@ -1,6 +1,9 @@
 package com.michelapplication.moodtracker.controller;
 
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -34,8 +37,9 @@ public class PageResult extends AppCompatActivity {
     //SharedPreferences
     private String comment;
     private int smiley;
-    private long dateShare;
+    private long saveDay;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +65,22 @@ public class PageResult extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
         comment = prefs.getString(COMMENT, "");
         smiley = prefs.getInt(MOOD_TEMPORARY, 0);
-        dateShare = prefs.getLong(DATE, 0);
+        saveDay = prefs.getLong(DATE, 0);
 
-        mView7.setText(String.valueOf(dateShare));
+        //Days between today and saveDay
+        Calendar today  = Calendar.getInstance();
+        today.get(Calendar.DAY_OF_MONTH);
+        today.get(Calendar.MONTH);
+        today.get(Calendar.YEAR);
+        long diff = today.getTimeInMillis() - saveDay;
+        int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
+
+        
+
+
+        mView7.setText(String.valueOf(dayCount));
+
+
 
     }
 }
