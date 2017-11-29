@@ -1,5 +1,6 @@
 package com.michelapplication.moodtracker.controller;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -116,7 +117,6 @@ public class PageResult extends MainActivity {
         //add value in mMooBDD if dayCount != 0
         if (dayCount != 0){
             mMoodBDD.insertMood(new Mood(choice_color, size_color, size_comment, saveComment));
-            onResume();
         }
 
         //add void mMooBdd if dayCount > 1
