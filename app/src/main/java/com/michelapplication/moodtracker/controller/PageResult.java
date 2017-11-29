@@ -9,7 +9,11 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.michelapplication.moodtracker.BDD.Mood;
+import com.michelapplication.moodtracker.BDD.MoodBDD;
 import com.michelapplication.moodtracker.R;
+
+import java.util.ArrayList;
 
 import static com.michelapplication.moodtracker.controller.MainActivity.COMMENT;
 import static com.michelapplication.moodtracker.controller.MainActivity.DATE;
@@ -35,9 +39,23 @@ public class PageResult extends AppCompatActivity {
     private ImageButton btn2;
     private ImageButton btn1;
     //SharedPreferences
-    private String comment;
+    private String saveComment;
     private int smiley;
     private long saveDay;
+    //BDD and Arrays for BDD
+    private MoodBDD mMoodBDD;
+    private ArrayList<Mood> arrayMoods;
+    private ArrayList<Integer> arrayColor;
+    private ArrayList<Integer> arraySizeColor;
+    private ArrayList<Integer> arraySizeComment;
+    private ArrayList<String> arrayComment;
+    // values for BDD
+    private int choice_color = 1;
+    private int size_color = 1;
+    private int size_comment = 1;
+    private String comment = "Default mood";
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -63,7 +81,7 @@ public class PageResult extends AppCompatActivity {
 
         //SharedPreferences date comment and smiley
         SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
-        comment = prefs.getString(COMMENT, "");
+        saveComment = prefs.getString(COMMENT, "");
         smiley = prefs.getInt(MOOD_TEMPORARY, 0);
         saveDay = prefs.getLong(DATE, 0);
 
@@ -75,12 +93,40 @@ public class PageResult extends AppCompatActivity {
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
 
+        //add BDD and Arrray for BDD
+        mMoodBDD = new MoodBDD(this);
+        arrayMoods = new ArrayList<>();
+        mMoodBDD.open();
+        arrayMoods = mMoodBDD.getMood();
+
+        //add smileys possibilities for get color, size color and size btn comment
+        if (smiley == 0) { size_color = 360; size_comment = 315; choice_color = (R.color.banana_yellow);
+        }
+        if (smiley == 1) { size_color = 288; size_comment = 243; choice_color = (R.color.light_sage);
+        }
+        if (smiley == 2) { size_color = 216; size_comment = 171; choice_color = (R.color.cornflower_blue_65);
+        }
+        if (smiley == 3) { size_color = 144; size_comment = 99; choice_color = (R.color.warm_grey);
+        }
+        if (smiley == 4) { size_color = 72; size_comment = 27; choice_color = (R.color.faded_red);
+        }
+
+        //add value in mMooBDD if dayCount != 0
+        if (dayCount != 0){
+            mMoodBDD.insertMood(new Mood(choice_color, size_color, size_comment, comment));
+        }
         
+        //add void mMooBdd if dayCount > 1
+        while (dayCount > 1)
+        {
+            mMoodBDD.insertMood(new Mood(choice_color, 0, 0, ""));
+            dayCount--;
+        }
+
+        mView7.setText(String.valueOf(size_comment));
 
 
-        mView7.setText(String.valueOf(dayCount));
 
-
-
+        mMoodBDD.close();
     }
 }
