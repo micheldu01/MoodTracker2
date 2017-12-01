@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.michelapplication.moodtracker.BDD.Mood;
+import com.michelapplication.moodtracker.BDD.MoodBDD;
 import com.michelapplication.moodtracker.model.MpagerAdapter;
 import com.michelapplication.moodtracker.R;
 import com.michelapplication.moodtracker.model.VerticalViewPager;
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String COMMENT = "Comment";
     public static final String MOOD_TEMPORARY = "";
     public static final String DATE  = "yyyy-MM-dd";
+    //BDD
+    private MoodBDD mMoodBDD;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -68,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
         //If first connection
         if (MOOD_TEMPORARY == ""){
+            //add BDD
+            int daysBDD = 1;
+            mMoodBDD = new MoodBDD(this);
+            mMoodBDD.open();
+            /*while (daysBDD < 8){
+                mMoodBDD.insertMood(new Mood(R.color.white, 0, 0, ""));
+                daysBDD++;
+            }*/
+            mMoodBDD.close();
             // add date
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             Calendar calendar = Calendar.getInstance();

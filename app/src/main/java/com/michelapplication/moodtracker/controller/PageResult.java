@@ -95,7 +95,7 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         //int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-        int dayCount = 1;
+        int dayCount = 2;
         //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
         arrayMoods = new ArrayList<>();
@@ -122,7 +122,7 @@ public class PageResult extends MainActivity {
         //add void mMooBdd if dayCount > 1
         while (dayCount > 1)
         {
-            mMoodBDD.insertMood(new Mood(choice_color, 0, 0, ""));
+            mMoodBDD.insertMood(new Mood(R.color.white, 300, 0, ""));
             dayCount--;
         }
 
@@ -235,8 +235,8 @@ public class PageResult extends MainActivity {
         if (myComment.equals("")){
             myButton.setVisibility(View.INVISIBLE);
         }
-        if (mySizeColor == 0){
-            myTextView.setText(" default mood");
+        if (myColor == (R.color.white)){
+            myTextView.setText("default mood");
         }
         float sp7 = (mySizeColor);
         float px7 = sp7 * getResources().getDisplayMetrics().density;
