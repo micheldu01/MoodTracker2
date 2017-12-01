@@ -32,14 +32,15 @@ public class MpagerAdapter extends PagerAdapter {
     private static final String MYMOOD = "MyMood";
     // variables
     private int[] layouts;
-    private int[] tableauCouleur= {R.color.banana_yellow,R.color.light_sage,R.color.cornflower_blue_65,R.color.warm_grey,R.color.faded_red};
+    private int[] arrayColor= {R.color.banana_yellow,R.color.light_sage,R.color.cornflower_blue_65,R.color.warm_grey,R.color.faded_red};
     private int[] arraySmiley = {R.drawable.smiley_super_happy,R.drawable.smiley_happy,
             R.drawable.smiley_normal,R.drawable.smiley_disappointed,R.drawable.smiley_sad};
     private LayoutInflater layoutInflater;
     private Context context;
     //sharedPreferences
     private SharedPreferences mPreferences;
-
+    //test
+    private static final int NUM_PAGES = 5;
 
     // constructor
     public MpagerAdapter(int[] layouts, Context context)
@@ -51,7 +52,7 @@ public class MpagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return layouts.length;
+        return arraySmiley.length;
     }
 
     @Override
@@ -65,13 +66,13 @@ public class MpagerAdapter extends PagerAdapter {
         View view = layoutInflater.inflate(R.layout.first_screen,container,false);
         ImageView smiley = (ImageView) view.findViewById(R.id.image_smiley_super_happy);
         smiley.setImageResource(arraySmiley[position]);
-        view.setBackgroundResource(tableauCouleur[position]);
+        view.setBackgroundResource(arrayColor[position]);
         //add music
         MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.music_appli);
         mediaPlayer.start();
         //add sharedpreferences date and position arraySmiley
         mPreferences  = context.getSharedPreferences(MYMOOD, MODE_PRIVATE);
-        mPreferences.edit().putInt(MOOD_TEMPORARY,position).commit();
+        mPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
         // add date
         Calendar thatDay = Calendar.getInstance();
         thatDay.get(Calendar.DAY_OF_MONTH);

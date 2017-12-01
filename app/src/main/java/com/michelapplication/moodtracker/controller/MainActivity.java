@@ -43,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String DATE  = "yyyy-MM-dd";
     //BDD
     private MoodBDD mMoodBDD;
+    //Values BDD
+    private int colorTemporary = R.color.white;
+    private int sizeColorTemporary = 300;
+    private int sizeCommentTemporary = 0;
+    private String commentTemporary = "";
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -71,15 +76,15 @@ public class MainActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences(MYMOOD, Context.MODE_PRIVATE);
 
         //If first connection
-        if (MOOD_TEMPORARY == ""){
+        if (MOOD_TEMPORARY == null){
             //add BDD
             int daysBDD = 1;
             mMoodBDD = new MoodBDD(this);
             mMoodBDD.open();
-            /*while (daysBDD < 8){
-                mMoodBDD.insertMood(new Mood(R.color.white, 0, 0, ""));
+            while (daysBDD < 8){
+                mMoodBDD.insertMood(new Mood(colorTemporary, sizeColorTemporary, sizeCommentTemporary, commentTemporary));
                 daysBDD++;
-            }*/
+            }
             mMoodBDD.close();
             // add date
             SharedPreferences.Editor editor = mSharedPreferences.edit();
