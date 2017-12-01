@@ -39,8 +39,6 @@ public class MpagerAdapter extends PagerAdapter {
     private Context context;
     //sharedPreferences
     private SharedPreferences mPreferences;
-    //test
-    private static final int NUM_PAGES = 5;
 
     // constructor
     public MpagerAdapter(int[] layouts, Context context)
@@ -52,7 +50,7 @@ public class MpagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return arraySmiley.length;
+        return layouts.length;
     }
 
     @Override

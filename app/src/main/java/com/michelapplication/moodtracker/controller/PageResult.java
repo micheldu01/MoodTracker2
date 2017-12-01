@@ -95,12 +95,11 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-
         //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
         arrayMoods = new ArrayList<>();
         mMoodBDD.open();
-        
+
         //add smileys possibilities for get color, size color and size btn comment
         if (smiley == 0) { size_color = 360; size_comment = 315; choice_color = (R.color.banana_yellow);
         }
