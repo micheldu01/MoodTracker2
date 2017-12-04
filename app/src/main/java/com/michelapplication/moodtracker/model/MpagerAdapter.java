@@ -9,6 +9,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,7 @@ public class MpagerAdapter extends PagerAdapter {
         //add sharedpreferences date and position arraySmiley
         mPreferences  = context.getSharedPreferences(MYMOOD, MODE_PRIVATE);
         mPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
+        Log.i("moodtracker", "page number" + position);
         // add date
         Calendar thatDay = Calendar.getInstance();
         thatDay.get(Calendar.DAY_OF_MONTH);

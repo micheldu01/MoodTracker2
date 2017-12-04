@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.michelapplication.moodtracker.BDD.Mood;
 import com.michelapplication.moodtracker.BDD.MoodBDD;
 import com.michelapplication.moodtracker.R;
+import com.michelapplication.moodtracker.model.VerticalViewPager;
 
 import java.util.ArrayList;
 
@@ -53,12 +55,11 @@ public class PageResult extends MainActivity {
     private MoodBDD mMoodBDD;
     private ArrayList<Mood> arrayMoods;
     // values for BDD
-    private int choice_color = 1;
-    private int size_color = 1;
-    private int size_comment = 1;
+    private int choice_color;
+    private int size_color;
+    private int size_comment;
     //Toast
     private TextView toast_mood;
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -95,7 +96,9 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-        //add BDD and Arrray for BDD
+        //test date
+        dayCount = 1;
+        //add BDD and Array for BDD
         mMoodBDD = new MoodBDD(this);
         arrayMoods = new ArrayList<>();
         mMoodBDD.open();
@@ -123,6 +126,8 @@ public class PageResult extends MainActivity {
             dayCount--;
         }
         arrayMoods = mMoodBDD.getMood();
+        Log.i("mooddata","nombre de ligne de la table"+ arrayMoods.size());
+        //mView7.setText(String.valueOf(smiley));
 
         //seven_days
         methodDay(arrayMoods.get(arrayMoods.size()-7).getColor(),
