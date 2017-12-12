@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     private int sizeCommentTemporary = 0;
     private String commentTemporary = "";
 
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

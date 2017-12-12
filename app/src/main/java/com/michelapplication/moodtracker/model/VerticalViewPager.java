@@ -38,6 +38,7 @@ public class VerticalViewPager extends ViewPager {
         @Override
         public void transformPage(View view, float position) {
 
+
             if (position < -1 ) {
 
                 view.setAlpha(0);
@@ -55,6 +56,7 @@ public class VerticalViewPager extends ViewPager {
 
             else {
                 view.setAlpha(0);
+
             }
         }
     }

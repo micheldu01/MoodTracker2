@@ -7,7 +7,6 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 import com.michelapplication.moodtracker.BDD.Mood;
 import com.michelapplication.moodtracker.BDD.MoodBDD;
 import com.michelapplication.moodtracker.R;
-import com.michelapplication.moodtracker.model.VerticalViewPager;
 
 import java.util.ArrayList;
 
@@ -55,33 +53,22 @@ public class PageResult extends MainActivity {
     private MoodBDD mMoodBDD;
     private ArrayList<Mood> arrayMoods;
     // values for BDD
-    private int choice_color;
-    private int size_color;
-    private int size_comment;
+    private int choice_color = 1;
+    private int size_color = 1;
+    private int size_comment = 1;
     //Toast
     private TextView toast_mood;
+    //test array mview
+    private ImageButton[] arrayBtn;
+    private TextView[] arrayViews;
+    private int[] arrayRTextView = {R.id.yesterday,R.id.day_before_yesterday,R.id.three_days_ago,R.id.four_days_ago,R.id.five_days_ago,R.id.six_days_ago,R.id.a_week_ago};
+    private int[] arrayRbtn = {R.id.btn_1,R.id.btn_2,R.id.btn_3,R.id.btn_4,R.id.btn_5,R.id.btn_6,R.id.btn_7};
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_result);
-
-        // text view and image btn
-        mView7 = (TextView) findViewById(R.id.a_week_ago);
-        mView6 = (TextView) findViewById(R.id.six_days_ago);
-        mView5 = (TextView) findViewById(R.id.five_days_ago);
-        mView4 = (TextView) findViewById(R.id.four_days_ago);
-        mView3 = (TextView) findViewById(R.id.three_days_ago);
-        mView2 = (TextView) findViewById(R.id.day_before_yesterday);
-        mView1 = (TextView) findViewById(R.id.yesterday);
-        btn7 = (ImageButton) findViewById(R.id.btn_7);
-        btn6 = (ImageButton) findViewById(R.id.btn_6);
-        btn5 = (ImageButton) findViewById(R.id.btn_5);
-        btn4 = (ImageButton) findViewById(R.id.btn_4);
-        btn3 = (ImageButton) findViewById(R.id.btn_3);
-        btn2 = (ImageButton) findViewById(R.id.btn_2);
-        btn1 = (ImageButton) findViewById(R.id.btn_1);
 
         //SharedPreferences date comment and smiley
         SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
@@ -96,9 +83,10 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-        //test date
+        //TEXT DATE
         dayCount = 1;
-        //add BDD and Array for BDD
+
+        //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
         arrayMoods = new ArrayList<>();
         mMoodBDD.open();
@@ -126,134 +114,18 @@ public class PageResult extends MainActivity {
             dayCount--;
         }
         arrayMoods = mMoodBDD.getMood();
-        Log.i("mooddata","nombre de ligne de la table"+ arrayMoods.size());
-        //mView7.setText(String.valueOf(smiley));
 
-        //seven_days
-        methodDay(arrayMoods.get(arrayMoods.size()-7).getColor(),
-                arrayMoods.get(arrayMoods.size()-7).getComment(),
-                arrayMoods.get(arrayMoods.size()-7).getSizeColor(),
-                arrayMoods.get(arrayMoods.size()-7).getSizeCommnent(),
-                btn7,
-                mView7);
+        //TEST MVIEW
+        arrayViews = new TextView[] {mView1, mView2, mView3, mView4, mView5, mView6, mView7};
+        arrayBtn = new ImageButton[] {btn1,btn2,btn3,btn4,btn5,btn6,btn7};
 
-        //six days
-        methodDay(arrayMoods.get(arrayMoods.size()-6).getColor(),
-                arrayMoods.get(arrayMoods.size()-6).getComment(),
-                arrayMoods.get(arrayMoods.size()-6).getSizeColor(),
-                arrayMoods.get(arrayMoods.size()-6).getSizeCommnent(),
-                btn6,
-                mView6);
+        int jours = 0;
+        while (jours<7){
+            methodDays(jours);
+            jours++;
+        }
 
-        // five days
-        methodDay(arrayMoods.get(arrayMoods.size()-5).getColor(),
-                arrayMoods.get(arrayMoods.size()-5).getComment(),
-                arrayMoods.get(arrayMoods.size()-5).getSizeColor(),
-                arrayMoods.get(arrayMoods.size()-5).getSizeCommnent(),
-                btn5,
-                mView5);
-
-        //four days
-        methodDay(arrayMoods.get(arrayMoods.size()-4).getColor(),
-                arrayMoods.get(arrayMoods.size()-4).getComment(),
-                arrayMoods.get(arrayMoods.size()-4).getSizeColor(),
-                arrayMoods.get(arrayMoods.size()-4).getSizeCommnent(),
-                btn4,
-                mView4);
-
-        //tree days
-        methodDay(arrayMoods.get(arrayMoods.size()-3).getColor(),
-                arrayMoods.get(arrayMoods.size()-3).getComment(),
-                arrayMoods.get(arrayMoods.size()-3).getSizeColor(),
-                arrayMoods.get(arrayMoods.size()-3).getSizeCommnent(),
-                btn3,
-                mView3);
-
-        //two days
-        methodDay(arrayMoods.get(arrayMoods.size()-2).getColor(),
-                arrayMoods.get(arrayMoods.size()-2).getComment(),
-                arrayMoods.get(arrayMoods.size()-2).getSizeColor(),
-                arrayMoods.get(arrayMoods.size()-2).getSizeCommnent(),
-                btn2,
-                mView2);
-
-        //one day
-        methodDay(arrayMoods.get(arrayMoods.size()-1).getColor(),
-                arrayMoods.get(arrayMoods.size()-1).getComment(),
-                arrayMoods.get(arrayMoods.size()-1).getSizeColor(),
-                arrayMoods.get(arrayMoods.size()-1).getSizeCommnent(),
-                btn1,
-                mView1);
-
-        //test toast
-        btn7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                methodToast(arrayMoods.get(arrayMoods.size()-7).getComment());
-            }
-        });
-        btn6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                methodToast(arrayMoods.get(arrayMoods.size()-6).getComment());
-            }
-        });
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                methodToast(arrayMoods.get(arrayMoods.size()-5).getComment());
-            }
-        });
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                methodToast(arrayMoods.get(arrayMoods.size()-4).getComment());
-            }
-        });
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                methodToast(arrayMoods.get(arrayMoods.size()-3).getComment());
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                methodToast(arrayMoods.get(arrayMoods.size()-2).getComment());
-            }
-        });
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                methodToast(arrayMoods.get(arrayMoods.size()-1).getComment());
-            }
-        });
         mMoodBDD.close();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void methodDay(int myColor, String myComment, int mySizeColor, int mySizeComment, ImageButton myButton, TextView myTextView){
-        myTextView.setBackgroundColor(getColor(myColor));
-        //comment no comment
-        if (myComment.equals("")){
-            myButton.setVisibility(View.INVISIBLE);
-        }
-        if (myColor == (R.color.white)){
-            myTextView.setText("default mood");
-        }
-        float sp7 = (mySizeColor);
-        float px7 = sp7 * getResources().getDisplayMetrics().density;
-        myTextView.getLayoutParams().width = (int) px7;
-        //margin left
-        float spl7 = (mySizeComment);
-        float pxl7 = spl7 * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt7 = 30;
-        float pxt7 = spt7 * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp7 = (RelativeLayout.LayoutParams) myButton.getLayoutParams();
-        lp7.setMargins((int) pxl7, (int) pxt7, 0, 0);
-        myButton.setLayoutParams(lp7);
     }
 
     public void methodToast(String mString){
@@ -265,5 +137,39 @@ public class PageResult extends MainActivity {
         toast.setView(layout);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.show();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void methodDays(int numberDay){
+        final int number_bdd = numberDay + 1;
+        arrayViews[numberDay] = (TextView) findViewById(arrayRTextView[numberDay]);
+        arrayBtn[numberDay] = (ImageButton) findViewById(arrayRbtn[numberDay]);
+        arrayBtn[numberDay].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                methodToast(arrayMoods.get(arrayMoods.size()-number_bdd).getComment());
+            }
+        });
+
+        arrayViews[numberDay].setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-number_bdd).getColor()));
+        //comment no comment
+        if (arrayMoods.get(arrayMoods.size()-number_bdd).getComment().equals("")){
+            arrayBtn[numberDay].setVisibility(View.INVISIBLE);
+        }
+        if (arrayMoods.get(arrayMoods.size()-number_bdd).getColor() == (R.color.white)){
+            arrayViews[numberDay].setText("default mood");
+        }
+        float sp = (arrayMoods.get(arrayMoods.size()-number_bdd).getSizeColor());
+        float px = sp * getResources().getDisplayMetrics().density;
+        arrayViews[numberDay].getLayoutParams().width = (int) px;
+        //margin left
+        float spl = (arrayMoods.get(arrayMoods.size()-number_bdd).getSizeCommnent());
+        float pxl = spl * getResources().getDisplayMetrics().density;
+        //margin top
+        float spt = 30;
+        float pxt = spt * getResources().getDisplayMetrics().density;
+        //change margins
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) arrayBtn[numberDay].getLayoutParams();
+        lp.setMargins((int) pxl, (int) pxt, 0, 0);
+        arrayBtn[numberDay].setLayoutParams(lp);
     }
 }
