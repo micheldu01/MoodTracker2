@@ -38,8 +38,7 @@ public class MpagerAdapter extends PagerAdapter {
             R.drawable.smiley_normal,R.drawable.smiley_disappointed,R.drawable.smiley_sad};
     private LayoutInflater layoutInflater;
     private Context context;
-    //sharedPreferences
-    private SharedPreferences mPreferences;
+
 
     // constructor
     public MpagerAdapter(int[] layouts, Context context)
@@ -47,6 +46,7 @@ public class MpagerAdapter extends PagerAdapter {
         this.layouts = layouts;
         this.context = context;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
     @Override
@@ -66,21 +66,6 @@ public class MpagerAdapter extends PagerAdapter {
         ImageView smiley = (ImageView) view.findViewById(R.id.image_smiley_super_happy);
         smiley.setImageResource(arraySmiley[position]);
         view.setBackgroundResource(arrayColor[position]);
-        //add music
-        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.music_appli);
-        mediaPlayer.start();
-        //add sharedpreferences date and position arraySmiley
-        mPreferences  = context.getSharedPreferences(MYMOOD, MODE_PRIVATE);
-        mPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
-        Log.i("moodtracker", "page number" + position);
-        // add date
-        Calendar thatDay = Calendar.getInstance();
-        thatDay.get(Calendar.DAY_OF_MONTH);
-        thatDay.get(Calendar.MONTH);
-        thatDay.get(Calendar.YEAR);
-        long saveDay = thatDay.getTimeInMillis();
-        mPreferences.edit().putLong(DATE, saveDay).commit();
-
         container.addView(view);
         return view;
     }
@@ -90,4 +75,5 @@ public class MpagerAdapter extends PagerAdapter {
         View view = (View)object;
         container.removeView(view);
     }
+
 }

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,7 @@ public class PageResult extends MainActivity {
         SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
         saveComment = prefs.getString(COMMENT, "");
         smiley = prefs.getInt(MOOD_TEMPORARY, 0);
+        Log.i("moodtracker", "MOOD PAGE RESULT" + smiley);
         saveDay = prefs.getLong(DATE, 0);
 
         //Days between today and saveDay

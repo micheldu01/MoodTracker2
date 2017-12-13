@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.util.Calendar;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.ParcelUuid;
 import android.support.annotation.RequiresApi;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,13 +44,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String COMMENT = "Comment";
     public static final String MOOD_TEMPORARY = "";
     public static final String DATE  = "yyyy-MM-dd";
-    //BDD
-    private MoodBDD mMoodBDD;
-    //Values BDD
-    private int colorTemporary = R.color.white;
-    private int sizeColorTemporary = 300;
-    private int sizeCommentTemporary = 0;
-    private String commentTemporary = "";
+    public static final String FIRST_CONNECT = "";
+    // music
+    private MediaPlayer mMediaPlayer;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -56,11 +57,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn_history = (Button)findViewById(R.id.button_history_black);
+
         mPager = (VerticalViewPager) findViewById(R.id.viewPager);
+        mMediaPlayer = MediaPlayer.create(this, R.raw.music_appli);
+
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mSharedPreferences  = getSharedPreferences(MYMOOD, MODE_PRIVATE);
+                mSharedPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
+                //Log.i("moodtracker", "MOOD TEMPORARY" + position);
+
+                // add date
+                Calendar thatDay = Calendar.getInstance();
+                thatDay.get(Calendar.DAY_OF_MONTH);
+                thatDay.get(Calendar.MONTH);
+                thatDay.get(Calendar.YEAR);
+                long saveDay = thatDay.getTimeInMillis();
+                mSharedPreferences.edit().putLong(DATE, saveDay).commit();
+                mMediaPlayer.start();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
         mpagerAdapter = new MpagerAdapter(layouts,this);
         mPager.setAdapter(mpagerAdapter);
-        //set the current item (smiley))
-        mPager.setCurrentItem(1);
+
         //implement white square and btn and edit text (in mode invisible)
         btn_cancel_comment = (Button) findViewById(R.id.btn_cancel_comment);
         btn_cancel_comment.setVisibility(View.INVISIBLE);
@@ -74,17 +104,9 @@ public class MainActivity extends AppCompatActivity {
         //SharedPreferences
         mSharedPreferences = getSharedPreferences(MYMOOD, Context.MODE_PRIVATE);
 
+
         //If first connection
-        if (MOOD_TEMPORARY == null){
-            //add BDD
-            int daysBDD = 1;
-            mMoodBDD = new MoodBDD(this);
-            mMoodBDD.open();
-            while (daysBDD < 8){
-                mMoodBDD.insertMood(new Mood(colorTemporary, sizeColorTemporary, sizeCommentTemporary, commentTemporary));
-                daysBDD++;
-            }
-            mMoodBDD.close();
+        if (FIRST_CONNECT.equals("")){
             // add date
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             Calendar calendar = Calendar.getInstance();
@@ -94,9 +116,10 @@ public class MainActivity extends AppCompatActivity {
             long saveDay = calendar.getTimeInMillis();
             editor.putLong(DATE, saveDay);
             editor.commit();
-
-            //add current mood
-            editor.putInt(MOOD_TEMPORARY, 1);
+            String first = "one";
+            mSharedPreferences.edit().putString(FIRST_CONNECT, first).commit();
+            mPager.setCurrentItem(1);
+            Log.i("moodtracker", "FIRST CONNECT" + first);
         }
 
         //btn of the MainActivity
