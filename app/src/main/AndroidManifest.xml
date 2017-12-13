@@ -2,12 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.michelapplication.moodtracker">
 
-    <supports-screens
-        android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
-        android:xlargeScreens="true"
-        android:anyDensity="true"/>
+    <supports-screens android:requiresSmallestWidthDp="320"/>
+    <supports-screens android:requiresSmallestWidthDp="480"/>
+    <supports-screens android:requiresSmallestWidthDp="600"/>
+    <supports-screens android:requiresSmallestWidthDp="720"/>
 
     <application
         android:allowBackup="true"
