@@ -85,8 +85,7 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-        //TEXT DATE
-        dayCount = 1;
+
 
         //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
