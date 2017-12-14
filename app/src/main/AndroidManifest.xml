@@ -28,5 +28,6 @@
         <activity android:name=".controller.PageResult">
         </activity>
     </application>
+    
 
 </manifest>
