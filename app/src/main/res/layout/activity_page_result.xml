@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/warm_grey"
+    android:background="@color/result_grey"
 
     tools:context="com.michelapplication.moodtracker.controller.MainActivity">
 
@@ -19,7 +19,7 @@
 
     <ImageButton
         android:id="@+id/btn_7"
-        android:src="@drawable/ic_comment_black_48px"
+        android:src="@drawable/btn_comment"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="315dp"
         android:background="@color/transparent"
@@ -38,7 +38,7 @@
 
     <ImageButton
         android:id="@+id/btn_6"
-        android:src="@drawable/ic_comment_black_48px"
+        android:src="@drawable/btn_comment"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="243dp"
         android:background="@color/transparent"
@@ -58,7 +58,7 @@
 
     <ImageButton
         android:id="@+id/btn_5"
-        android:src="@drawable/ic_comment_black_48px"
+        android:src="@drawable/btn_comment"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="171dp"
         android:background="@color/transparent"
@@ -78,7 +78,7 @@
 
     <ImageButton
         android:id="@+id/btn_4"
-        android:src="@drawable/ic_comment_black_48px"
+        android:src="@drawable/btn_comment"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="99dp"
         android:background="@color/transparent"
@@ -98,7 +98,7 @@
 
     <ImageButton
         android:id="@+id/btn_3"
-        android:src="@drawable/ic_comment_black_48px"
+        android:src="@drawable/btn_comment"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="27dp"
         android:background="@color/transparent"
@@ -118,7 +118,7 @@
 
     <ImageButton
         android:id="@+id/btn_2"
-        android:src="@drawable/ic_comment_black_48px"
+        android:src="@drawable/btn_comment"
         android:layout_marginTop="30dp"
         android:background="@color/transparent"
         android:layout_below="@id/three_days_ago"
@@ -137,7 +137,7 @@
 
     <ImageButton
         android:id="@+id/btn_1"
-        android:src="@drawable/ic_comment_black_48px"
+        android:src="@drawable/btn_comment"
         android:layout_marginTop="30dp"
         android:background="@color/transparent"
         android:layout_below="@id/day_before_yesterday"

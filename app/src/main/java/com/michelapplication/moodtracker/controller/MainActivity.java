@@ -44,10 +44,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String COMMENT = "Comment";
     public static final String MOOD_TEMPORARY = "";
     public static final String DATE  = "yyyy-MM-dd";
-    public static final String FIRST_CONNECT = "";
+    public static final String FIRST_CONNECT = "TRUE";
     // music
     private MediaPlayer mMediaPlayer;
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -57,40 +56,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn_history = (Button)findViewById(R.id.button_history_black);
-
         mPager = (VerticalViewPager) findViewById(R.id.viewPager);
-        mMediaPlayer = MediaPlayer.create(this, R.raw.music_appli);
-
-
-        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                mSharedPreferences  = getSharedPreferences(MYMOOD, MODE_PRIVATE);
-                mSharedPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
-                //Log.i("moodtracker", "MOOD TEMPORARY" + position);
-
-                // add date
-                Calendar thatDay = Calendar.getInstance();
-                thatDay.get(Calendar.DAY_OF_MONTH);
-                thatDay.get(Calendar.MONTH);
-                thatDay.get(Calendar.YEAR);
-                long saveDay = thatDay.getTimeInMillis();
-                mSharedPreferences.edit().putLong(DATE, saveDay).commit();
-                mMediaPlayer.start();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
         mpagerAdapter = new MpagerAdapter(layouts,this);
         mPager.setAdapter(mpagerAdapter);
-
+        //set the current item (smiley))
         //implement white square and btn and edit text (in mode invisible)
         btn_cancel_comment = (Button) findViewById(R.id.btn_cancel_comment);
         btn_cancel_comment.setVisibility(View.INVISIBLE);
@@ -103,10 +72,14 @@ public class MainActivity extends AppCompatActivity {
         white_square.setVisibility(View.INVISIBLE);
         //SharedPreferences
         mSharedPreferences = getSharedPreferences(MYMOOD, Context.MODE_PRIVATE);
-
+        //music
+        mMediaPlayer = MediaPlayer.create(this,R.raw.music_appli);
 
         //If first connection
-        if (FIRST_CONNECT.equals("")){
+        if (FIRST_CONNECT.equals("TRUE")){
+            // add mood happy
+            mPager.setCurrentItem(1);
+
             // add date
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             Calendar calendar = Calendar.getInstance();
@@ -116,11 +89,39 @@ public class MainActivity extends AppCompatActivity {
             long saveDay = calendar.getTimeInMillis();
             editor.putLong(DATE, saveDay);
             editor.commit();
-            String first = "one";
-            mSharedPreferences.edit().putString(FIRST_CONNECT, first).commit();
-            mPager.setCurrentItem(1);
-            Log.i("moodtracker", "FIRST CONNECT" + first);
+
+            //add current mood
+            //test string
+            mSharedPreferences.edit().putString(FIRST_CONNECT, "FALSE");
         }
+
+        mPager.addOnPageChangeListener(new VerticalViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // start music
+                mMediaPlayer.start();
+                // add date
+                Calendar thatDay = Calendar.getInstance();
+                thatDay.get(Calendar.DAY_OF_MONTH);
+                thatDay.get(Calendar.MONTH);
+                thatDay.get(Calendar.YEAR);
+                long saveDay = thatDay.getTimeInMillis();
+                mSharedPreferences.edit().putLong(DATE, saveDay).commit();
+                // add smiley selected
+                mSharedPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         //btn of the MainActivity
         btn_history.setOnClickListener(new View.OnClickListener() {

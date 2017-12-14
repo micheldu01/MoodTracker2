@@ -9,7 +9,6 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +37,8 @@ public class MpagerAdapter extends PagerAdapter {
             R.drawable.smiley_normal,R.drawable.smiley_disappointed,R.drawable.smiley_sad};
     private LayoutInflater layoutInflater;
     private Context context;
-
+    //sharedPreferences
+    private SharedPreferences mPreferences;
 
     // constructor
     public MpagerAdapter(int[] layouts, Context context)
@@ -46,7 +46,6 @@ public class MpagerAdapter extends PagerAdapter {
         this.layouts = layouts;
         this.context = context;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
     }
 
     @Override
@@ -66,6 +65,7 @@ public class MpagerAdapter extends PagerAdapter {
         ImageView smiley = (ImageView) view.findViewById(R.id.image_smiley_super_happy);
         smiley.setImageResource(arraySmiley[position]);
         view.setBackgroundResource(arrayColor[position]);
+        
         container.addView(view);
         return view;
     }
@@ -75,5 +75,4 @@ public class MpagerAdapter extends PagerAdapter {
         View view = (View)object;
         container.removeView(view);
     }
-
 }
