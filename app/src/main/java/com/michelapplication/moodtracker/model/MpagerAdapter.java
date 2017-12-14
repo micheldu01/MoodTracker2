@@ -37,8 +37,7 @@ public class MpagerAdapter extends PagerAdapter {
             R.drawable.smiley_normal,R.drawable.smiley_disappointed,R.drawable.smiley_sad};
     private LayoutInflater layoutInflater;
     private Context context;
-    //sharedPreferences
-    private SharedPreferences mPreferences;
+
 
     // constructor
     public MpagerAdapter(int[] layouts, Context context)
@@ -58,6 +57,7 @@ public class MpagerAdapter extends PagerAdapter {
         return view==object;
     }
 
+    // set the current smiley
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public Object instantiateItem(ViewGroup container, int  position) {

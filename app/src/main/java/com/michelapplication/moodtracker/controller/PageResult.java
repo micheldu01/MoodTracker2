@@ -117,19 +117,20 @@ public class PageResult extends MainActivity {
         }
         arrayMoods = mMoodBDD.getMood();
 
-        //TEST MVIEW
+        //array views and btn
         arrayViews = new TextView[] {mView1, mView2, mView3, mView4, mView5, mView6, mView7};
         arrayBtn = new ImageButton[] {btn1,btn2,btn3,btn4,btn5,btn6,btn7};
 
-        int jours = 0;
-        while (jours<7){
-            methodDays(jours);
-            jours++;
+        //set the seven mood
+        int days = 0;
+        while (days<7){
+            methodDays(days);
+            days++;
         }
-
+        // close BDD
         mMoodBDD.close();
     }
-
+        // method toast
     public void methodToast(String mString){
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
@@ -142,9 +143,11 @@ public class PageResult extends MainActivity {
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void methodDays(int numberDay){
+        //adapt number number array and bdd
         final int number_bdd = numberDay + 1;
         arrayViews[numberDay] = (TextView) findViewById(arrayRTextView[numberDay]);
         arrayBtn[numberDay] = (ImageButton) findViewById(arrayRbtn[numberDay]);
+        //set comment
         arrayBtn[numberDay].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,13 +156,14 @@ public class PageResult extends MainActivity {
         });
 
         arrayViews[numberDay].setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-number_bdd).getColor()));
-        //comment no comment
+        //if comment or no comment btn invisible and set default mood
         if (arrayMoods.get(arrayMoods.size()-number_bdd).getComment().equals("")){
             arrayBtn[numberDay].setVisibility(View.INVISIBLE);
         }
         if (arrayMoods.get(arrayMoods.size()-number_bdd).getColor() == (R.color.white)){
             arrayViews[numberDay].setText("default mood");
         }
+        //set size color
         float sp = (arrayMoods.get(arrayMoods.size()-number_bdd).getSizeColor());
         float px = sp * getResources().getDisplayMetrics().density;
         arrayViews[numberDay].getLayoutParams().width = (int) px;

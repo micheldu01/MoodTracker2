@@ -6,12 +6,14 @@ package com.michelapplication.moodtracker.BDD;
 
 public class Mood {
 
+    //mood values
     private int id;
     private int color;
     private int sizeColor;
     private int sizeComnent;
     private String comment;
 
+    // create constructors
     public Mood() {
     }
 
@@ -22,6 +24,7 @@ public class Mood {
         this.comment = comment;
     }
 
+    // getter and setter
     public int getColor() {
         return color;
     }

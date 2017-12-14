@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         btn_history = (Button)findViewById(R.id.button_history_black);
         mPager = (VerticalViewPager) findViewById(R.id.viewPager);
         mpagerAdapter = new MpagerAdapter(layouts,this);
@@ -77,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
         //If first connection
         if (FIRST_CONNECT.equals("TRUE")){
-            // add mood happy
+            // set mood happy
             mPager.setCurrentItem(1);
 
-            // add date
+            // save date
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             Calendar calendar = Calendar.getInstance();
             calendar.get(Calendar.DAY_OF_MONTH);
@@ -90,24 +91,24 @@ public class MainActivity extends AppCompatActivity {
             editor.putLong(DATE, saveDay);
             editor.commit();
 
-            //add current mood
             //test string
             mSharedPreferences.edit().putString(FIRST_CONNECT, "FALSE");
         }
 
+            // insert save date and save mood position
         mPager.addOnPageChangeListener(new VerticalViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 // start music
                 mMediaPlayer.start();
-                // add date
+                // save date
                 Calendar thatDay = Calendar.getInstance();
                 thatDay.get(Calendar.DAY_OF_MONTH);
                 thatDay.get(Calendar.MONTH);
                 thatDay.get(Calendar.YEAR);
                 long saveDay = thatDay.getTimeInMillis();
                 mSharedPreferences.edit().putLong(DATE, saveDay).commit();
-                // add smiley selected
+                // save smiley selected
                 mSharedPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
             }
 
@@ -143,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 HideShow(false);
-                //SharedPreferences
+                //SharedPreferences comment
                 String h = edit_text_comment.getText().toString();
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.putString(COMMENT,h);
