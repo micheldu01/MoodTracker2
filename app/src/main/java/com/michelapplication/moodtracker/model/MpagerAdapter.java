@@ -65,7 +65,7 @@ public class MpagerAdapter extends PagerAdapter {
         ImageView smiley = (ImageView) view.findViewById(R.id.image_smiley_super_happy);
         smiley.setImageResource(arraySmiley[position]);
         view.setBackgroundResource(arrayColor[position]);
-        
+
         container.addView(view);
         return view;
     }
