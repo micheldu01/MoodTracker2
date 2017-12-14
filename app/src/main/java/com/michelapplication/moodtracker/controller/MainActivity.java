@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 mSharedPreferences.edit().putLong(DATE, saveDay).commit();
                 // add smiley selected
                 mSharedPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
-                //je vais faire un test
+                //je fais la connection avec GITHUB
             }
 
             @Override
