@@ -121,7 +121,7 @@ public class PageResult extends MainActivity {
         arrayMoods = mMoodBDD.getMood();
 
         //if first connect
-        int numberarray = arrayMoods.size();
+        numberarray = arrayMoods.size();
         Log.i("moodtracker","numberarray" + numberarray);
         while (numberarray<7){
             mMoodBDD.insertMood(new Mood(R.color.white, 300, 0, ""));
