@@ -64,6 +64,10 @@ public class PageResult extends MainActivity {
     private TextView[] arrayViews;
     private int[] arrayRTextView = {R.id.yesterday,R.id.day_before_yesterday,R.id.three_days_ago,R.id.four_days_ago,R.id.five_days_ago,R.id.six_days_ago,R.id.a_week_ago};
     private int[] arrayRbtn = {R.id.btn_1,R.id.btn_2,R.id.btn_3,R.id.btn_4,R.id.btn_5,R.id.btn_6,R.id.btn_7};
+    //if first connect
+    private int numberarray;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -75,7 +79,6 @@ public class PageResult extends MainActivity {
         SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
         saveComment = prefs.getString(COMMENT, "");
         smiley = prefs.getInt(MOOD_TEMPORARY, 0);
-        Log.i("moodtracker", "MOOD PAGE RESULT" + smiley);
         saveDay = prefs.getLong(DATE, 0);
 
         //Days between today and saveDay
@@ -85,7 +88,7 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-
+        //dayCount = 2;
 
         //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
@@ -104,6 +107,7 @@ public class PageResult extends MainActivity {
         if (smiley == 4) { size_color = 72; size_comment = 27; choice_color = (R.color.faded_red);
         }
 
+
         //add value in mMooBDD if dayCount != 0
         if (dayCount != 0){
             mMoodBDD.insertMood(new Mood(choice_color, size_color, size_comment, saveComment));
@@ -115,6 +119,16 @@ public class PageResult extends MainActivity {
             dayCount--;
         }
         arrayMoods = mMoodBDD.getMood();
+
+        //if first connect
+        int numberarray = arrayMoods.size();
+        Log.i("moodtracker","numberarray" + numberarray);
+        while (numberarray<7){
+            mMoodBDD.insertMood(new Mood(R.color.white, 300, 0, ""));
+            numberarray++;
+        }
+        arrayMoods = mMoodBDD.getMood();
+
 
         //array views and btn
         arrayViews = new TextView[] {mView1, mView2, mView3, mView4, mView5, mView6, mView7};

@@ -23,6 +23,8 @@ import com.michelapplication.moodtracker.model.MpagerAdapter;
 import com.michelapplication.moodtracker.R;
 import com.michelapplication.moodtracker.model.VerticalViewPager;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String FIRST_CONNECT = "TRUE";
     // music
     private MediaPlayer mMediaPlayer;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -76,22 +79,12 @@ public class MainActivity extends AppCompatActivity {
         //music
         mMediaPlayer = MediaPlayer.create(this,R.raw.music_appli);
 
+
         //If first connection
         if (FIRST_CONNECT.equals("TRUE")){
             // set mood happy
             mPager.setCurrentItem(1);
-
-            // save date
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            Calendar calendar = Calendar.getInstance();
-            calendar.get(Calendar.DAY_OF_MONTH);
-            calendar.get(Calendar.MONTH);
-            calendar.get(Calendar.YEAR);
-            long saveDay = calendar.getTimeInMillis();
-            editor.putLong(DATE, saveDay);
-            editor.commit();
-
-            //test string
+            //save FALSE for the first connect
             mSharedPreferences.edit().putString(FIRST_CONNECT, "FALSE");
         }
 
@@ -99,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         mPager.addOnPageChangeListener(new VerticalViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // start music
-                mMediaPlayer.start();
+                // save smiley selected
+                mSharedPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
                 // save date
                 Calendar thatDay = Calendar.getInstance();
                 thatDay.get(Calendar.DAY_OF_MONTH);
@@ -108,18 +101,16 @@ public class MainActivity extends AppCompatActivity {
                 thatDay.get(Calendar.YEAR);
                 long saveDay = thatDay.getTimeInMillis();
                 mSharedPreferences.edit().putLong(DATE, saveDay).commit();
-                // save smiley selected
-                mSharedPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
             }
 
             @Override
             public void onPageSelected(int position) {
-
+                // start music
+                mMediaPlayer.start();
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 
@@ -149,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.putString(COMMENT,h);
                 editor.commit();
-
             }
         });
 
