@@ -66,7 +66,6 @@ public class PageResult extends MainActivity {
     private int[] arrayRbtn = {R.id.btn_1,R.id.btn_2,R.id.btn_3,R.id.btn_4,R.id.btn_5,R.id.btn_6,R.id.btn_7};
     //if first connect
     private int numberarray;
-    private String default_mood = "default mood";
 
 
 
@@ -89,12 +88,23 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-        dayCount = 1;
+
 
         //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
         arrayMoods = new ArrayList<>();
         mMoodBDD.open();
+
+        //if first connect
+        arrayMoods = mMoodBDD.getMood();
+
+        if(arrayMoods == null){
+            numberarray = 0;
+            while (numberarray<8){
+                mMoodBDD.insertMood(new Mood(R.color.white, 300, 0, ""));
+                numberarray++;
+            }
+        }
 
         //add smileys possibilities for get color, size color and size btn comment
         if (smiley == 0) { size_color = 360; size_comment = 315; choice_color = (R.color.banana_yellow);
@@ -108,19 +118,6 @@ public class PageResult extends MainActivity {
         if (smiley == 4) { size_color = 72; size_comment = 27; choice_color = (R.color.faded_red);
         }
 
-        arrayMoods = mMoodBDD.getMood();
-
-        if (arrayMoods == null){
-            numberarray = 0;
-            while (numberarray<7){
-                mMoodBDD.insertMood(new Mood(R.color.white, 360, 0, ""));
-                numberarray++;
-            }
-        }
-        //if first connect
-        //numberarray = arrayMoods.size();
-
-
         //add value in mMooBDD if dayCount != 0
         if (dayCount != 0){
             mMoodBDD.insertMood(new Mood(choice_color, size_color, size_comment, saveComment));
@@ -128,9 +125,11 @@ public class PageResult extends MainActivity {
         //add void mMooBdd if dayCount > 1
         while (dayCount > 1)
         {
-            mMoodBDD.insertMood(new Mood(R.color.white, 360, 0, ""));
+            mMoodBDD.insertMood(new Mood(R.color.white, 300, 0, ""));
             dayCount--;
         }
+
+        //set BDD into array
         arrayMoods = mMoodBDD.getMood();
 
         //array views and btn
@@ -177,7 +176,7 @@ public class PageResult extends MainActivity {
             arrayBtn[numberDay].setVisibility(View.INVISIBLE);
         }
         if (arrayMoods.get(arrayMoods.size()-number_bdd).getColor() == (R.color.white)){
-            arrayViews[numberDay].setText(default_mood);
+            arrayViews[numberDay].setText("default mood");
         }
         //set size color
         float sp = (arrayMoods.get(arrayMoods.size()-number_bdd).getSizeColor());
@@ -193,29 +192,5 @@ public class PageResult extends MainActivity {
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) arrayBtn[numberDay].getLayoutParams();
         lp.setMargins((int) pxl, (int) pxt, 0, 0);
         arrayBtn[numberDay].setLayoutParams(lp);
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

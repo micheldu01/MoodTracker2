@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
             mPager.setCurrentItem(1);
             //save FALSE for the first connect
             mSharedPreferences.edit().putString(FIRST_CONNECT, "FALSE");
-
         }
 
             // insert save date and save mood position
@@ -102,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 thatDay.get(Calendar.YEAR);
                 long saveDay = thatDay.getTimeInMillis();
                 mSharedPreferences.edit().putLong(DATE, saveDay).commit();
-
             }
 
             @Override
@@ -169,30 +167,5 @@ public class MainActivity extends AppCompatActivity {
         edit_text_comment.setVisibility(codeVisible);
         white_square = (TextView) findViewById(R.id.carre_blanc);
         white_square.setVisibility(codeVisible);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }
