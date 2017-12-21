@@ -8,6 +8,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,7 @@ public class PageResult extends MainActivity {
     private int[] arrayRbtn = {R.id.btn_1,R.id.btn_2,R.id.btn_3,R.id.btn_4,R.id.btn_5,R.id.btn_6,R.id.btn_7};
     private int[] arrayRelativeLayout = {R.id.rl1,R.id.rl2,R.id.rl3,R.id.rl4,R.id.rl5,R.id.rl6,R.id.rl7};
     //if first connect
-    private int numberarray;
+    private int numberArray;
     //smiles_choice
     private Smiley smile;
 
@@ -98,6 +99,7 @@ public class PageResult extends MainActivity {
         saveComment = prefs.getString(COMMENT, "");
         smiley = prefs.getInt(MOOD_TEMPORARY, 0);
         saveDay = prefs.getLong(DATE, 0);
+        Log.i("moodtracker","smiley  " + smiley);
 
         //Days between today and saveDay
         Calendar today  = Calendar.getInstance();
@@ -117,10 +119,10 @@ public class PageResult extends MainActivity {
         arrayMoods = mMoodBDD.getMood();
 
         if(arrayMoods == null){
-            numberarray = 0;
-            while (numberarray<8){
+            numberArray = 0;
+            while (numberArray<8){
                 mMoodBDD.insertMood(new Mood(R.color.white, 0.0f, ""));
-                numberarray++;
+                numberArray++;
             }
         }
 
@@ -160,10 +162,13 @@ public class PageResult extends MainActivity {
         toast_mood = (TextView) layout.findViewById(R.id.toast_mood);
         toast_mood.setText(mString);
         Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.BOTTOM,10,0);
         toast.setView(layout);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.show();
     }
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void methodDays(int numberDay){
         //adapt number number array and bdd

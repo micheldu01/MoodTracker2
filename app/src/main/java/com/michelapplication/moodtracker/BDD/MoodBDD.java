@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MoodBDD {
 
     private static final int VERSION_BDD = 1;
-    private static final String NOM_BDD = "mood6.dbb";
+    private static final String NOM_BDD = "mood10.dbb";
     private static final String TABLE_MOODS = "table_moods";
     private static final String COL_ID = "ID";
     private static final int NUM_COL_ID = 0;
@@ -24,7 +24,7 @@ public class MoodBDD {
     private static final String COL_SIZE_COLOR = "SIZE_COLOR";
     private static final int NUM_COL_SIZE_COLOR = 2;
     private static final String COL_COMMENT = "COMMENT";
-    private static final int NUM_COL_COMMENT = 4;
+    private static final int NUM_COL_COMMENT = 3;
 
     private SQLiteDatabase bdd;
 

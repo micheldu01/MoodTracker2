@@ -3,5 +3,8 @@
     <dimen name="margin_right_button">20dp</dimen>
     <dimen name="margin_top_button">10dp</dimen>
     <dimen name="padding_left_text">5dp</dimen>
-
+    <dimen name="height_toast">90dp</dimen>
+    <dimen name="margin_left_toast">10dp</dimen>
+    <dimen name="margin_right_toast">10dp</dimen>
+    <dimen name="margin_bottom_toast">15dp</dimen>
 </resources>
