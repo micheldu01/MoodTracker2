@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.michelapplication.moodtracker.BDD.Mood;
 import com.michelapplication.moodtracker.BDD.MoodBDD;
 import com.michelapplication.moodtracker.R;
+import com.michelapplication.moodtracker.model.DefaultMood;
 import com.michelapplication.moodtracker.model.Smiley;
 
 import java.util.ArrayList;
@@ -80,6 +81,8 @@ public class PageResult extends MainActivity {
     private int numberArray;
     //smiles_choice
     private Smiley smile;
+    //default mood
+    private DefaultMood defaultMood;
 
 
 
@@ -94,6 +97,7 @@ public class PageResult extends MainActivity {
         arrayViews = new TextView[] {mView1, mView2, mView3, mView4, mView5, mView6, mView7};
         arrayBtn = new ImageButton[] {btn1,btn2,btn3,btn4,btn5,btn6,btn7};
         arrayRL = new RelativeLayout[] {relativeLayout1,relativeLayout2,relativeLayout3,relativeLayout4,relativeLayout5,relativeLayout6,relativeLayout7};
+        defaultMood = new DefaultMood();
 
         //SharedPreferences date comment and smiley
         SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
@@ -120,7 +124,7 @@ public class PageResult extends MainActivity {
         if(arrayMoods == null){
             numberArray = 0;
             while (numberArray<8){
-                mMoodBDD.insertMood(new Mood(R.color.white, 0.0f, ""));
+                mMoodBDD.insertMood(new Mood(defaultMood.getColor(), defaultMood.getSizeColor(), defaultMood.getComment()));
                 numberArray++;
             }
         }
@@ -137,7 +141,7 @@ public class PageResult extends MainActivity {
         //add void mMooBdd if dayCount > 1
         while (dayCount > 1)
         {
-            mMoodBDD.insertMood(new Mood(R.color.white, 0.0f, ""));
+            mMoodBDD.insertMood(new Mood(defaultMood.getColor(), defaultMood.getSizeColor(), defaultMood.getComment()));
             dayCount--;
         }
 
