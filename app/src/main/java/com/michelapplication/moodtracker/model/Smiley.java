@@ -19,19 +19,19 @@ public class Smiley {
         }
         if (smile == 1) {
             this.color = R.color.light_sage;
-            this.sizeColor = 0.2f;
+            this.sizeColor = 0.23f;
         }
         if (smile == 2) {
             this.color = R.color.cornflower_blue_65;
-            this.sizeColor = 0.5f;
+            this.sizeColor = 0.65f;
         }
         if (smile == 3) {
             this.color = R.color.warm_grey;
-            this.sizeColor = 1.0f;
+            this.sizeColor = 1.45f;
         }
         if (smile == 4) {
             this.color = R.color.faded_red;
-            this.sizeColor = 2.0f;
+            this.sizeColor = 3.7f;
         }
     }
 

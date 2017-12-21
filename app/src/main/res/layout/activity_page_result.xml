@@ -31,7 +31,7 @@
 
             <ImageButton
                 android:id="@+id/btn_7"
-                android:layout_marginTop="@dimen/margin_top_button"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_right_button"
@@ -72,7 +72,7 @@
 
             <ImageButton
                 android:id="@+id/btn_6"
-                android:layout_marginTop="@dimen/margin_top_button"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_right_button"
@@ -113,7 +113,7 @@
 
             <ImageButton
                 android:id="@+id/btn_5"
-                android:layout_marginTop="@dimen/margin_top_button"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_right_button"
@@ -154,7 +154,7 @@
 
             <ImageButton
                 android:id="@+id/btn_4"
-                android:layout_marginTop="@dimen/margin_top_button"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_right_button"
@@ -196,7 +196,7 @@
             <ImageButton
                 android:id="@+id/btn_3"
                 android:src="@drawable/ic_comment_black_48px"
-                android:layout_marginTop="@dimen/margin_top_button"
+                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_right_button"
                 android:background="@color/transparent"
@@ -236,7 +236,7 @@
 
             <ImageButton
                 android:id="@+id/btn_2"
-                android:layout_marginTop="@dimen/margin_top_button"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_right_button"
@@ -277,7 +277,7 @@
 
             <ImageButton
                 android:id="@+id/btn_1"
-                android:layout_marginTop="@dimen/margin_top_button"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_right_button"

@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.michelapplication.moodtracker.BDD.Mood;
 import com.michelapplication.moodtracker.BDD.MoodBDD;
 import com.michelapplication.moodtracker.R;
+import com.michelapplication.moodtracker.model.Smiley;
 
 import java.util.ArrayList;
 
@@ -76,7 +77,8 @@ public class PageResult extends MainActivity {
     private int[] arrayRelativeLayout = {R.id.rl1,R.id.rl2,R.id.rl3,R.id.rl4,R.id.rl5,R.id.rl6,R.id.rl7};
     //if first connect
     private int numberarray;
-
+    //smiles_choice
+    private Smiley smile;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -84,6 +86,12 @@ public class PageResult extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_result);
+
+
+        //array views and btn
+        arrayViews = new TextView[] {mView1, mView2, mView3, mView4, mView5, mView6, mView7};
+        arrayBtn = new ImageButton[] {btn1,btn2,btn3,btn4,btn5,btn6,btn7};
+        arrayRL = new RelativeLayout[] {relativeLayout1,relativeLayout2,relativeLayout3,relativeLayout4,relativeLayout5,relativeLayout6,relativeLayout7};
 
         //SharedPreferences date comment and smiley
         SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
@@ -116,17 +124,10 @@ public class PageResult extends MainActivity {
             }
         }
 
-        //add smileys possibilities for get color, size color and size btn comment
-        if (smiley == 0) { size_color = 0.0f; choice_color = (R.color.banana_yellow);
-        }
-        if (smiley == 1) { size_color = 0.2f; choice_color = (R.color.light_sage);
-        }
-        if (smiley == 2) { size_color = 0.5f; choice_color = (R.color.cornflower_blue_65);
-        }
-        if (smiley == 3) { size_color = 1f; choice_color = (R.color.warm_grey);
-        }
-        if (smiley == 4) { size_color = 2f; choice_color = (R.color.faded_red);
-        }
+        //add smileys possibilities for get color, size color
+        smile = new Smiley(smiley);
+        size_color = smile.getSizeColor();
+        choice_color = smile.getColor();
 
         //add value in mMooBDD if dayCount != 0
         if (dayCount != 0){
@@ -141,12 +142,6 @@ public class PageResult extends MainActivity {
 
         //set BDD into array
         arrayMoods = mMoodBDD.getMood();
-
-        //array views and btn
-        arrayViews = new TextView[] {mView1, mView2, mView3, mView4, mView5, mView6, mView7};
-        arrayBtn = new ImageButton[] {btn1,btn2,btn3,btn4,btn5,btn6,btn7};
-        arrayRL = new RelativeLayout[] {relativeLayout1,relativeLayout2,relativeLayout3,relativeLayout4,relativeLayout5,relativeLayout6,relativeLayout7};
-
 
         //set the seven moods
         int days = 0;
