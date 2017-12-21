@@ -99,7 +99,6 @@ public class PageResult extends MainActivity {
         saveComment = prefs.getString(COMMENT, "");
         smiley = prefs.getInt(MOOD_TEMPORARY, 0);
         saveDay = prefs.getLong(DATE, 0);
-        Log.i("moodtracker","smiley  " + smiley);
 
         //Days between today and saveDay
         Calendar today  = Calendar.getInstance();
@@ -108,7 +107,6 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-        dayCount = 1;
 
         //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
