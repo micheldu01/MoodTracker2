@@ -23,8 +23,6 @@ public class MoodBDD {
     private static final int NUM_COL_COLOR = 1;
     private static final String COL_SIZE_COLOR = "SIZE_COLOR";
     private static final int NUM_COL_SIZE_COLOR = 2;
-    private static final String COL_SIZE_COMMENT = "SIZE_COMMENT";
-    private static final int NUM_COL_SIZE_COMMENT = 3;
     private static final String COL_COMMENT = "COMMENT";
     private static final int NUM_COL_COMMENT = 4;
 
@@ -57,7 +55,6 @@ public class MoodBDD {
         //add values and keys
         values.put(COL_COLOR, mood.getColor());
         values.put(COL_SIZE_COLOR, mood.getSizeColor());
-        values.put(COL_SIZE_COMMENT, mood.getSizeCommnent());
         values.put(COL_COMMENT, mood.getComment());
         //on insère l'objet dans la BDD via le ContentValues
         return bdd.insert(TABLE_MOODS, null, values);
@@ -82,8 +79,7 @@ public class MoodBDD {
         Mood mood = new Mood();
         //on lui affecte toutes les infos grâce aux infos contenues dans le Cursor
         mood.setColor(c.getInt(NUM_COL_COLOR));
-        mood.setSizeColor(c.getInt(NUM_COL_SIZE_COLOR));
-        mood.setSizeCommnent(c.getInt(NUM_COL_SIZE_COMMENT));
+        mood.setSizeColor(c.getFloat(NUM_COL_SIZE_COLOR));
         mood.setComment(c.getString(NUM_COL_COMMENT));
         //On ferme le cursor
         //c.close();

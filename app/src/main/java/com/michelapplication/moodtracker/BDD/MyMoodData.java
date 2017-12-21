@@ -14,15 +14,13 @@ public class MyMoodData extends SQLiteOpenHelper {
     private static final String COL_ID = "ID";
     private static final String COL_COLOR = "COLOR";
     private static final String COL_SIZE_COLOR = "SIZE_COLOR";
-    private static final String COL_SIZE_COMMENT = "SIZE_COMMENT";
     private static final String COL_COMMENT = "COMMENT";
 
     private static final String CREATE_BDD = "CREATE TABLE "
             + TABLE_MOODS + " ("
             + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COL_COLOR + " INTEGER, "
-            + COL_SIZE_COLOR + " INTEGER,"
-            + COL_SIZE_COMMENT + " INTEGER,"
+            + COL_SIZE_COLOR + " FLOAT,"
             + COL_COMMENT + " TEXT);";
 
     public MyMoodData(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

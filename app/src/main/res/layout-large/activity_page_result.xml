@@ -15,35 +15,34 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/rl7"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:background="@color/banana_yellow"
                 android:id="@+id/a_week_ago"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/black"
                 android:text="@string/a_week_ago"
                 android:layout_width="match_parent"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/padding_left_text"
                 android:layout_height="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_7"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/margin_top_button"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/margin_right_button"
                 android:background="@color/transparent"
-                android:layout_width="24dp"
-                android:layout_height="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 
         <TextView
-            android:layout_weight="3"
-            android:text="michel"
+            android:layout_weight="1"
             android:background="@color/result_grey"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -57,6 +56,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/rl6"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -66,25 +66,24 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/black"
                 android:text="@string/six_days_ago"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/padding_left_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_6"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/margin_top_button"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/margin_right_button"
                 android:background="@color/transparent"
-                android:layout_width="24dp"
-                android:layout_height="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 
         <TextView
-            android:layout_weight="3"
-            android:text="michel"
+            android:layout_weight="1"
             android:background="@color/result_grey"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -98,6 +97,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/rl5"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -107,25 +107,24 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/black"
                 android:text="@string/five_days_ago"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/padding_left_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_5"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/margin_top_button"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/margin_right_button"
                 android:background="@color/transparent"
-                android:layout_width="24dp"
-                android:layout_height="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 
         <TextView
-            android:layout_weight="3"
-            android:text="michel"
+            android:layout_weight="1"
             android:background="@color/result_grey"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -139,6 +138,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/rl4"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -148,25 +148,24 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/black"
                 android:text="@string/four_day_ago"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/padding_left_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_4"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/margin_top_button"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/margin_right_button"
                 android:background="@color/transparent"
-                android:layout_width="24dp"
-                android:layout_height="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 
         <TextView
-            android:layout_weight="3"
-            android:text="michel"
+            android:layout_weight="1"
             android:background="@color/result_grey"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -180,34 +179,34 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/rl3"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/three_days_ago"
-                android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/black"
                 android:text="@string/three_days_ago"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/padding_left_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_3"
                 android:src="@drawable/ic_comment_black_48px"
+                android:layout_marginTop="@dimen/margin_top_button"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/margin_right_button"
                 android:background="@color/transparent"
-                android:layout_width="24dp"
-                android:layout_height="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 
         <TextView
-            android:layout_weight="3"
-            android:text="michel"
+            android:layout_weight="1"
             android:background="@color/result_grey"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -221,6 +220,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/rl2"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -230,25 +230,24 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/black"
                 android:text="@string/day_before_yesterday"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/padding_left_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_2"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/margin_top_button"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/margin_right_button"
                 android:background="@color/transparent"
-                android:layout_width="24dp"
-                android:layout_height="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 
         <TextView
-            android:layout_weight="3"
-            android:text="michel"
+            android:layout_weight="1"
             android:background="@color/result_grey"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -262,6 +261,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/rl1"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -271,25 +271,24 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/black"
                 android:text="@string/yesterday"
-                android:paddingLeft="5dp"
+                android:paddingLeft="@dimen/padding_left_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <ImageButton
                 android:id="@+id/btn_1"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/margin_top_button"
                 android:src="@drawable/ic_comment_black_48px"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/margin_right_button"
                 android:background="@color/transparent"
-                android:layout_width="24dp"
-                android:layout_height="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 
         <TextView
-            android:layout_weight="3"
-            android:text="michel"
+            android:layout_weight="1"
             android:background="@color/result_grey"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

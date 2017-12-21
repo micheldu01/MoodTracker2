@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +47,14 @@ public class PageResult extends MainActivity {
     private ImageButton btn3;
     private ImageButton btn2;
     private ImageButton btn1;
+    //relative layout
+    private RelativeLayout relativeLayout7;
+    private RelativeLayout relativeLayout6;
+    private RelativeLayout relativeLayout5;
+    private RelativeLayout relativeLayout4;
+    private RelativeLayout relativeLayout3;
+    private RelativeLayout relativeLayout2;
+    private RelativeLayout relativeLayout1;
     //SharedPreferences
     private String saveComment;
     private int smiley;
@@ -55,15 +64,16 @@ public class PageResult extends MainActivity {
     private ArrayList<Mood> arrayMoods;
     // values for BDD
     private int choice_color = 1;
-    private int size_color = 1;
-    private int size_comment = 1;
+    private float size_color = 1;
     //Toast
     private TextView toast_mood;
     //test array mview
     private ImageButton[] arrayBtn;
     private TextView[] arrayViews;
+    private RelativeLayout[] arrayRL;
     private int[] arrayRTextView = {R.id.yesterday,R.id.day_before_yesterday,R.id.three_days_ago,R.id.four_days_ago,R.id.five_days_ago,R.id.six_days_ago,R.id.a_week_ago};
     private int[] arrayRbtn = {R.id.btn_1,R.id.btn_2,R.id.btn_3,R.id.btn_4,R.id.btn_5,R.id.btn_6,R.id.btn_7};
+    private int[] arrayRelativeLayout = {R.id.rl1,R.id.rl2,R.id.rl3,R.id.rl4,R.id.rl5,R.id.rl6,R.id.rl7};
     //if first connect
     private int numberarray;
 
@@ -88,7 +98,7 @@ public class PageResult extends MainActivity {
         today.get(Calendar.YEAR);
         long diff = today.getTimeInMillis() - saveDay;
         int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
-
+        dayCount = 1;
 
         //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
@@ -101,31 +111,31 @@ public class PageResult extends MainActivity {
         if(arrayMoods == null){
             numberarray = 0;
             while (numberarray<8){
-                mMoodBDD.insertMood(new Mood(R.color.white, 300, 0, ""));
+                mMoodBDD.insertMood(new Mood(R.color.white, 0.0f, ""));
                 numberarray++;
             }
         }
 
         //add smileys possibilities for get color, size color and size btn comment
-        if (smiley == 0) { size_color = 360; size_comment = 315; choice_color = (R.color.banana_yellow);
+        if (smiley == 0) { size_color = 0.0f; choice_color = (R.color.banana_yellow);
         }
-        if (smiley == 1) { size_color = 288; size_comment = 243; choice_color = (R.color.light_sage);
+        if (smiley == 1) { size_color = 0.2f; choice_color = (R.color.light_sage);
         }
-        if (smiley == 2) { size_color = 216; size_comment = 171; choice_color = (R.color.cornflower_blue_65);
+        if (smiley == 2) { size_color = 0.5f; choice_color = (R.color.cornflower_blue_65);
         }
-        if (smiley == 3) { size_color = 144; size_comment = 99; choice_color = (R.color.warm_grey);
+        if (smiley == 3) { size_color = 1f; choice_color = (R.color.warm_grey);
         }
-        if (smiley == 4) { size_color = 72; size_comment = 27; choice_color = (R.color.faded_red);
+        if (smiley == 4) { size_color = 2f; choice_color = (R.color.faded_red);
         }
 
         //add value in mMooBDD if dayCount != 0
         if (dayCount != 0){
-            mMoodBDD.insertMood(new Mood(choice_color, size_color, size_comment, saveComment));
+            mMoodBDD.insertMood(new Mood(choice_color, size_color, saveComment));
         }
         //add void mMooBdd if dayCount > 1
         while (dayCount > 1)
         {
-            mMoodBDD.insertMood(new Mood(R.color.white, 300, 0, ""));
+            mMoodBDD.insertMood(new Mood(R.color.white, 0.0f, ""));
             dayCount--;
         }
 
@@ -135,8 +145,10 @@ public class PageResult extends MainActivity {
         //array views and btn
         arrayViews = new TextView[] {mView1, mView2, mView3, mView4, mView5, mView6, mView7};
         arrayBtn = new ImageButton[] {btn1,btn2,btn3,btn4,btn5,btn6,btn7};
+        arrayRL = new RelativeLayout[] {relativeLayout1,relativeLayout2,relativeLayout3,relativeLayout4,relativeLayout5,relativeLayout6,relativeLayout7};
 
-        //set the seven mood
+
+        //set the seven moods
         int days = 0;
         while (days<7){
             methodDays(days);
@@ -145,6 +157,7 @@ public class PageResult extends MainActivity {
         // close BDD
         mMoodBDD.close();
     }
+
         // method toast
     public void methodToast(String mString){
         LayoutInflater inflater = getLayoutInflater();
@@ -178,19 +191,11 @@ public class PageResult extends MainActivity {
         if (arrayMoods.get(arrayMoods.size()-number_bdd).getColor() == (R.color.white)){
             arrayViews[numberDay].setText("default mood");
         }
-        //set size color
-        float sp = (arrayMoods.get(arrayMoods.size()-number_bdd).getSizeColor());
-        float px = sp * getResources().getDisplayMetrics().density;
-        arrayViews[numberDay].getLayoutParams().width = (int) px;
-        //margin left
-        float spl = (arrayMoods.get(arrayMoods.size()-number_bdd).getSizeCommnent());
-        float pxl = spl * getResources().getDisplayMetrics().density;
-        //margin top
-        float spt = 30;
-        float pxt = spt * getResources().getDisplayMetrics().density;
-        //change margins
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) arrayBtn[numberDay].getLayoutParams();
-        lp.setMargins((int) pxl, (int) pxt, 0, 0);
-        arrayBtn[numberDay].setLayoutParams(lp);
+
+        arrayRL[numberDay] = (RelativeLayout) findViewById(arrayRelativeLayout[numberDay]);
+        LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) arrayRL[numberDay].getLayoutParams();
+        lp1.weight = arrayMoods.get(arrayMoods.size()-number_bdd).getSizeColor();
+        arrayRL[numberDay].setLayoutParams(lp1);
     }
+
 }

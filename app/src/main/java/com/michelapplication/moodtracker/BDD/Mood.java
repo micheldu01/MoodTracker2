@@ -9,18 +9,16 @@ public class Mood {
     //mood values
     private int id;
     private int color;
-    private int sizeColor;
-    private int sizeComnent;
+    private float sizeColor;
     private String comment;
 
     // create constructors
     public Mood() {
     }
 
-    public Mood(int color, int sizeColor, int sizeCommnent, String comment) {
+    public Mood(int color, float sizeColor, String comment) {
         this.color = color;
         this.sizeColor = sizeColor;
-        this.sizeComnent = sizeCommnent;
         this.comment = comment;
     }
 
@@ -33,20 +31,12 @@ public class Mood {
         this.color = color;
     }
 
-    public int getSizeColor() {
+    public float getSizeColor() {
         return sizeColor;
     }
 
-    public void setSizeColor(int sizeColor) {
+    public void setSizeColor(float sizeColor) {
         this.sizeColor = sizeColor;
-    }
-
-    public int getSizeCommnent() {
-        return sizeComnent;
-    }
-
-    public void setSizeCommnent(int sizeCommnent) {
-        this.sizeComnent = sizeCommnent;
     }
 
     public String getComment() {
