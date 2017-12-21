@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer mMediaPlayer;
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
