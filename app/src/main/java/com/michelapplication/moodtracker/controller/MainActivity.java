@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         btn_comment = (Button) findViewById(R.id.button_comment);
         edit_text_comment = (EditText) findViewById(R.id.edit_text);
         edit_text_comment.setVisibility(View.INVISIBLE);
-        white_square = (TextView) findViewById(R.id.carre_blanc);
+        white_square = (TextView) findViewById(R.id.white_square);
         white_square.setVisibility(View.INVISIBLE);
         //SharedPreferences
         mSharedPreferences = getSharedPreferences(MYMOOD, Context.MODE_PRIVATE);
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         btn_accept_comment.setVisibility(codeVisible);
         edit_text_comment = (EditText) findViewById(R.id.edit_text);
         edit_text_comment.setVisibility(codeVisible);
-        white_square = (TextView) findViewById(R.id.carre_blanc);
+        white_square = (TextView) findViewById(R.id.white_square);
         white_square.setVisibility(codeVisible);
     }
 }
