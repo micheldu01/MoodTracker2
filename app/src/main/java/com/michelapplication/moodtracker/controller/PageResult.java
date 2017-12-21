@@ -184,7 +184,7 @@ public class PageResult extends MainActivity {
         });
 
         arrayViews[numberDay].setBackgroundColor(getColor(arrayMoods.get(arrayMoods.size()-number_bdd).getColor()));
-        //if comment or no comment btn invisible and set default mood
+        //if comment or not comment btn invisible and set default mood
         if (arrayMoods.get(arrayMoods.size()-number_bdd).getComment().equals("")){
             arrayBtn[numberDay].setVisibility(View.INVISIBLE);
         }
