@@ -65,8 +65,8 @@ public class PageResult extends MainActivity {
     private MoodBDD mMoodBDD;
     private ArrayList<Mood> arrayMoods;
     // values for BDD
-    private int choice_color = 1;
-    private float size_color = 1;
+    private int choice_color;
+    private float size_color;
     //Toast
     private TextView toast_mood;
     //test array mview
@@ -80,6 +80,7 @@ public class PageResult extends MainActivity {
     private int numberArray;
     //smiles_choice
     private Smiley smile;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
