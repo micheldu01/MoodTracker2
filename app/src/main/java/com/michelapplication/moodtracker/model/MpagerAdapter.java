@@ -9,6 +9,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import com.michelapplication.moodtracker.R;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -37,6 +39,11 @@ public class MpagerAdapter extends PagerAdapter {
             R.drawable.smiley_normal,R.drawable.smiley_disappointed,R.drawable.smiley_sad};
     private LayoutInflater layoutInflater;
     private Context context;
+    private SharedPreferences mSharedPreferences;
+    private long saveDay;
+    private Calendar thatDay;
+
+
 
 
     // constructor
@@ -65,6 +72,10 @@ public class MpagerAdapter extends PagerAdapter {
         ImageView smiley = (ImageView) view.findViewById(R.id.image_smiley_super_happy);
         smiley.setImageResource(arraySmiley[position]);
         view.setBackgroundResource(arrayColor[position]);
+
+        mSharedPreferences = context.getSharedPreferences(MYMOOD, Context.MODE_PRIVATE);
+
+
 
         container.addView(view);
         return view;

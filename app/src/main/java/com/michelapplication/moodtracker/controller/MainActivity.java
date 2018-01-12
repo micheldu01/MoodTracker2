@@ -23,7 +23,9 @@ import com.michelapplication.moodtracker.model.MpagerAdapter;
 import com.michelapplication.moodtracker.R;
 import com.michelapplication.moodtracker.model.VerticalViewPager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,8 +49,18 @@ public class MainActivity extends AppCompatActivity {
     public static final String MOOD_TEMPORARY = "";
     public static final String DATE  = "yyyy-MM-dd";
     public static final String FIRST_CONNECT = "TRUE";
+    public static final String DAYS_COUNT = "Day_count";
     // music
     private MediaPlayer mMediaPlayer;
+    //date
+    private Calendar thatDay;
+    private long saveDay;
+    //test
+    private int number =1;
+    private int days_count;
+    private Date date;
+    private int oneDay;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -85,25 +97,23 @@ public class MainActivity extends AppCompatActivity {
             mPager.setCurrentItem(1);
             //save FALSE for the first connect
             mSharedPreferences.edit().putString(FIRST_CONNECT, "FALSE");
+            //SaveDate();
         }
+        // compare save date with current date
+        CompareDate();
+
 
             // insert save date and save mood position
         mPager.addOnPageChangeListener(new VerticalViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // save smiley selected
-                mSharedPreferences.edit().putInt(MOOD_TEMPORARY,(position)).commit();
-                // save date
-                Calendar thatDay = Calendar.getInstance();
-                thatDay.get(Calendar.DAY_OF_MONTH);
-                thatDay.get(Calendar.MONTH);
-                thatDay.get(Calendar.YEAR);
-                long saveDay = thatDay.getTimeInMillis();
-                mSharedPreferences.edit().putLong(DATE, saveDay).commit();
             }
 
             @Override
             public void onPageSelected(int position) {
+                // save smiley selected
+                mSharedPreferences.edit().putInt(MOOD_TEMPORARY, (position)).commit();
+                Log.i("moodtracker", "la position = " + position);
                 // start music
                 mMediaPlayer.start();
             }
@@ -166,5 +176,46 @@ public class MainActivity extends AppCompatActivity {
         edit_text_comment.setVisibility(codeVisible);
         white_square = (TextView) findViewById(R.id.white_square);
         white_square.setVisibility(codeVisible);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void SaveDate(){
+        // save date
+        thatDay = Calendar.getInstance();
+        thatDay.get(Calendar.DAY_OF_MONTH);
+        thatDay.get(Calendar.MONTH);
+        thatDay.get(Calendar.YEAR);
+        saveDay = thatDay.getTimeInMillis();
+        mSharedPreferences.edit().putLong(DATE, saveDay).commit();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void CompareDate(){
+
+        // get save date
+        saveDay = mSharedPreferences.getLong(DATE, 0);
+        SimpleDateFormat dateformatSave = new SimpleDateFormat("dd-MM-yyyy");
+        String datetimeSave = dateformatSave.format(saveDay);
+        Log.i("moodtracker", "datetimeSave  " + datetimeSave);
+
+        // get current date
+        date = new Date(System.currentTimeMillis());
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+        String datetime = dateformat.format(date.getTime());
+        Log.i("moodtracker", "datetimeCurrent  " + datetime);
+
+        //add one day
+        oneDay = 86400000;
+        days_count = 0;
+        // while save date and current day is different add day_ccunt++
+        while (!datetimeSave.equals(datetime)){
+            days_count++;
+            datetimeSave = dateformat.format(saveDay + oneDay);
+            Log.i("moodtracker", "datetime1save (bis) " + datetimeSave);
+            Log.i("moodtracker", "day " + days_count);
+            oneDay = oneDay+86400000;
+        }
+        mSharedPreferences.edit().putInt(DAYS_COUNT, days_count).commit();
+        SaveDate();
     }
 }

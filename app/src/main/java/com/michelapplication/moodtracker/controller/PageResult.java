@@ -25,7 +25,9 @@ import com.michelapplication.moodtracker.R;
 import com.michelapplication.moodtracker.model.DefaultMood;
 import com.michelapplication.moodtracker.model.Smiley;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static com.michelapplication.moodtracker.controller.MainActivity.COMMENT;
 import static com.michelapplication.moodtracker.controller.MainActivity.DATE;
@@ -83,6 +85,8 @@ public class PageResult extends MainActivity {
     private Smiley smile;
     //default mood
     private DefaultMood defaultMood;
+    // date
+    private int dayCount;
 
 
 
@@ -104,14 +108,9 @@ public class PageResult extends MainActivity {
         saveComment = prefs.getString(COMMENT, "");
         smiley = prefs.getInt(MOOD_TEMPORARY, 0);
         saveDay = prefs.getLong(DATE, 0);
+        dayCount = prefs.getInt(DAYS_COUNT, 0);
 
-        //Days between today and saveDay
-        Calendar today  = Calendar.getInstance();
-        today.get(Calendar.DAY_OF_MONTH);
-        today.get(Calendar.MONTH);
-        today.get(Calendar.YEAR);
-        long diff = today.getTimeInMillis() - saveDay;
-        int dayCount = (int)  diff / (24 * 60 * 60 * 1000);
+
 
         //add BDD and Arrray for BDD
         mMoodBDD = new MoodBDD(this);
