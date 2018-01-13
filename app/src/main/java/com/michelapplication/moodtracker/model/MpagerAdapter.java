@@ -74,7 +74,13 @@ public class MpagerAdapter extends PagerAdapter {
         view.setBackgroundResource(arrayColor[position]);
 
         mSharedPreferences = context.getSharedPreferences(MYMOOD, Context.MODE_PRIVATE);
-
+        // save date
+        thatDay = Calendar.getInstance();
+        thatDay.get(Calendar.DAY_OF_MONTH);
+        thatDay.get(Calendar.MONTH);
+        thatDay.get(Calendar.YEAR);
+        saveDay = thatDay.getTimeInMillis();
+        mSharedPreferences.edit().putLong(DATE, saveDay).commit();
 
 
         container.addView(view);

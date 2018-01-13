@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     private Calendar thatDay;
     private long saveDay;
     //test
-    private int number =1;
     private int days_count;
     private Date date;
     private int oneDay;
@@ -216,6 +215,6 @@ public class MainActivity extends AppCompatActivity {
             oneDay = oneDay+86400000;
         }
         mSharedPreferences.edit().putInt(DAYS_COUNT, days_count).commit();
-        SaveDate();
+        //SaveDate();
     }
 }

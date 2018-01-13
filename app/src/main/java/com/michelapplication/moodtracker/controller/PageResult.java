@@ -86,7 +86,7 @@ public class PageResult extends MainActivity {
     //default mood
     private DefaultMood defaultMood;
     // date
-    private int dayCount;
+    private int dayCount=0;
 
 
 
