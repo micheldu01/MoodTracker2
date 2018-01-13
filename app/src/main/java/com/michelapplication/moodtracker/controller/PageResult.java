@@ -109,6 +109,8 @@ public class PageResult extends MainActivity {
         smiley = prefs.getInt(MOOD_TEMPORARY, 0);
         saveDay = prefs.getLong(DATE, 0);
         dayCount = prefs.getInt(DAYS_COUNT, 0);
+        prefs.edit().putInt(DAYS_COUNT, 0).commit();
+
 
 
 

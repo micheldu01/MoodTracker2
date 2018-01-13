@@ -194,6 +194,9 @@ public class MainActivity extends AppCompatActivity {
             thatDay.get(Calendar.YEAR);
             saveDay = thatDay.getTimeInMillis();
             mSharedPreferences.edit().putLong(DATE, saveDay).commit();
+            mSharedPreferences.edit().putInt(MOOD_TEMPORARY, (1)).commit();
+
+
         }
         SimpleDateFormat dateformatSave = new SimpleDateFormat("dd-MM-yyyy");
         String datetimeSave = dateformatSave.format(saveDay);
@@ -218,6 +221,5 @@ public class MainActivity extends AppCompatActivity {
             oneDay = oneDay+86400000;
         }
         mSharedPreferences.edit().putInt(DAYS_COUNT, days_count).commit();
-        //SaveDate();
     }
 }
