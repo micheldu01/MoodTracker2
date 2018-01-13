@@ -106,7 +106,7 @@ public class PageResult extends MainActivity {
         //SharedPreferences date comment and smiley
         SharedPreferences prefs = getSharedPreferences(MYMOOD, MODE_PRIVATE);
         saveComment = prefs.getString(COMMENT, "");
-        smiley = prefs.getInt(MOOD_TEMPORARY, 0);
+        smiley = prefs.getInt("smiley", 0);
         saveDay = prefs.getLong(DATE, 0);
         dayCount = prefs.getInt(DAYS_COUNT, 0);
         prefs.edit().putInt(DAYS_COUNT, 0).commit();

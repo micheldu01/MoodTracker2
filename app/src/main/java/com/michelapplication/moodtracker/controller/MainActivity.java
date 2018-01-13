@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,5 +222,7 @@ public class MainActivity extends AppCompatActivity {
             oneDay = oneDay+86400000;
         }
         mSharedPreferences.edit().putInt(DAYS_COUNT, days_count).commit();
+        int smiley = mSharedPreferences.getInt(MOOD_TEMPORARY,0);
+        mSharedPreferences.edit().putInt("smiley",smiley);
     }
 }
