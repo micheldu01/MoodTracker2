@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String DATE  = "yyyy-MM-dd";
     public static final String FIRST_CONNECT = "TRUE";
     public static final String DAYS_COUNT = "Day_count";
+    public static final String MOOD_FINAL = "";
+
     // music
     private MediaPlayer mMediaPlayer;
     //date
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private int days_count;
     private Date date;
     private int oneDay;
-
+    private int smilies;
 
 
 
@@ -215,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
             oneDay = oneDay+86400000;
         }
         mSharedPreferences.edit().putInt(DAYS_COUNT, days_count).commit();
+        smilies = mSharedPreferences.getInt(MOOD_TEMPORARY, 0);
+        mSharedPreferences.edit().putInt(MOOD_FINAL,smilies).commit();
         SaveDate();
 
     }
