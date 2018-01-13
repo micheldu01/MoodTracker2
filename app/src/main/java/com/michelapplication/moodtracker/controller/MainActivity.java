@@ -189,14 +189,8 @@ public class MainActivity extends AppCompatActivity {
         saveDay = mSharedPreferences.getLong(DATE, 0);
         if (saveDay == 0){
             // save date
-            thatDay = Calendar.getInstance();
-            thatDay.get(Calendar.DAY_OF_MONTH);
-            thatDay.get(Calendar.MONTH);
-            thatDay.get(Calendar.YEAR);
-            saveDay = thatDay.getTimeInMillis();
-            mSharedPreferences.edit().putLong(DATE, saveDay).commit();
+            SaveDate();
             mSharedPreferences.edit().putInt(MOOD_TEMPORARY, (1)).commit();
-
 
         }
         SimpleDateFormat dateformatSave = new SimpleDateFormat("dd-MM-yyyy");
@@ -217,12 +211,22 @@ public class MainActivity extends AppCompatActivity {
         while (!datetimeSave.equals(datetime)){
             days_count++;
             datetimeSave = dateformat.format(saveDay + oneDay);
-            Log.i("moodtracker", "datetime1save (bis) " + datetimeSave);
             Log.i("moodtracker", "day " + days_count);
             oneDay = oneDay+86400000;
         }
         mSharedPreferences.edit().putInt(DAYS_COUNT, days_count).commit();
-        int smiley = mSharedPreferences.getInt(MOOD_TEMPORARY,0);
-        mSharedPreferences.edit().putInt("smiley",smiley);
+        SaveDate();
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void SaveDate(){
+        thatDay = Calendar.getInstance();
+        thatDay.get(Calendar.DAY_OF_MONTH);
+        thatDay.get(Calendar.MONTH);
+        thatDay.get(Calendar.YEAR);
+        saveDay = thatDay.getTimeInMillis();
+        mSharedPreferences.edit().putLong(DATE, saveDay).commit();
+
     }
 }
