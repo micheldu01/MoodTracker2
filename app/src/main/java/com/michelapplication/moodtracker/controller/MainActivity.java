@@ -182,11 +182,23 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void CompareDate(){
 
+
+
         // get save date
         saveDay = mSharedPreferences.getLong(DATE, 0);
+        if (saveDay == 0){
+            // save date
+            thatDay = Calendar.getInstance();
+            thatDay.get(Calendar.DAY_OF_MONTH);
+            thatDay.get(Calendar.MONTH);
+            thatDay.get(Calendar.YEAR);
+            saveDay = thatDay.getTimeInMillis();
+            mSharedPreferences.edit().putLong(DATE, saveDay).commit();
+        }
         SimpleDateFormat dateformatSave = new SimpleDateFormat("dd-MM-yyyy");
         String datetimeSave = dateformatSave.format(saveDay);
         Log.i("moodtracker", "datetimeSave  " + datetimeSave);
+
 
         // get current date
         date = new Date(System.currentTimeMillis());
