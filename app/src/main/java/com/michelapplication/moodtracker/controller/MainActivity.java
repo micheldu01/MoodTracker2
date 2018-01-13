@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             mPager.setCurrentItem(1);
             //save FALSE for the first connect
             mSharedPreferences.edit().putString(FIRST_CONNECT, "FALSE");
-            //SaveDate();
+
         }
         // compare save date with current date
         CompareDate();
@@ -177,16 +177,7 @@ public class MainActivity extends AppCompatActivity {
         white_square.setVisibility(codeVisible);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void SaveDate(){
-        // save date
-        thatDay = Calendar.getInstance();
-        thatDay.get(Calendar.DAY_OF_MONTH);
-        thatDay.get(Calendar.MONTH);
-        thatDay.get(Calendar.YEAR);
-        saveDay = thatDay.getTimeInMillis();
-        mSharedPreferences.edit().putLong(DATE, saveDay).commit();
-    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void CompareDate(){
